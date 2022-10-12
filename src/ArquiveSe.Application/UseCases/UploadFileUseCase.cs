@@ -27,10 +27,9 @@ namespace ArquiveSe.Application.UseCases
             var command = new CreateFileCommand
             {
                 Name = file.FileName,
-                UserId = Guid.NewGuid().ToString()
+                UserId = Guid.NewGuid().ToString(),
+                FileStream = file.OpenReadStream()
             };
-
-            await file.CopyToAsync(command.FileStream);
 
             await _bus.Send(command);
             return new();

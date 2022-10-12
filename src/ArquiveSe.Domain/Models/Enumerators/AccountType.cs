@@ -1,6 +1,6 @@
 ﻿namespace ArquiveSe.Core.Domain.Models.Enumerators
 {
-    public enum OwnerType
+    public enum AccountType
     {
         Odd,
         Enterprise

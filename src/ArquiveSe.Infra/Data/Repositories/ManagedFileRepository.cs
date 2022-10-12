@@ -6,7 +6,9 @@ namespace ArquiveSe.Infra.Data.Repositories
 {
     internal class ManagedFileRepository : BaseRepository<ManagedFile, Guid>, IManagedFileRepository
     {
-        protected override string _collectionName => $"managedFiles";
+        private const string MANAGEDFILES_COLLECTION_NAME = "managedFiles";
+
+        protected override string _collectionName => MANAGEDFILES_COLLECTION_NAME;
 
         public ManagedFileRepository(MongoClient dbClient) : base(dbClient)
         {

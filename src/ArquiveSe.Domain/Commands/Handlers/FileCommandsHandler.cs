@@ -8,23 +8,23 @@ namespace ArquiveSe.Core.Domain.Commands.Handlers
         IRequestHandler<CreateFileCommand>
     {
         private readonly IManagedFileRepository _managedFileRepository;
-        private readonly IOwnerRepository _ownerRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IBlobRepository _blobRepository;
 
         public FileCommandsHandler(
             IManagedFileRepository managedFileRepository,
-            IOwnerRepository ownerRepository,
+            IUserRepository userRepository,
             IBlobRepository blobRepository)
         {
             _managedFileRepository = managedFileRepository;
-            _ownerRepository = ownerRepository;
+            _userRepository = userRepository;
             _blobRepository = blobRepository;
         }
 
         public async Task<Unit> Handle(CreateFileCommand request, CancellationToken cancellationToken)
         {
-            var owner = await _ownerRepository.GetByExternalId(request.UserId);
-            var managedFile = new ManagedFile(request.Name, owner);
+            var user = await _userRepository.GetByExternalId(request.UserId);
+            var managedFile = new ManagedFile(request.Name, user.GetManagedFileOwner());
             await _blobRepository.UploadFile(managedFile.Id.Value.ToString(), request.FileStream);
             await _managedFileRepository.Upsert(managedFile);
 

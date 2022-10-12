@@ -6,7 +6,7 @@ namespace ArquiveSe.Core.Domain.Models.Entities;
 public class ManagedFile : Entity<Guid>
 {
     public string Name { get; private set; } = null!;
-    public Owner Owner { get; private set; } = new();
+    public ManagedFileOwner Owner { get; private set; } = new();
 
     public ManagedFile() : base(Guid.NewGuid(), DateTime.UtcNow)
     {
@@ -14,7 +14,7 @@ public class ManagedFile : Entity<Guid>
 
     public ManagedFile(
         string name,
-        Owner owner) : this()
+        ManagedFileOwner owner) : this()
     {
         Name = name;
         Owner = owner;

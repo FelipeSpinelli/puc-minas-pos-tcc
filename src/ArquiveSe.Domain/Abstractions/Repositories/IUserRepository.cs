@@ -3,8 +3,8 @@ using ArquiveSe.Core.Domain.Shared.Abstractions;
 
 namespace ArquiveSe.Domain.Abstractions.Repositories
 {
-    public interface IOwnerRepository : IRepository<Owner, Guid>
+    public interface IUserRepository : IRepository<User, Guid>
     {
-        Task<Owner> GetByExternalId(string externalId);
+        Task<User> GetByExternalId(string externalId);
     }
 }

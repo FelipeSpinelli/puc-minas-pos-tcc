@@ -18,7 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     return new MongoClient(connectionString);
                 })
                 .AddScoped<IManagedFileRepository, ManagedFileRepository>()
-                .AddScoped<IOwnerRepository, OwnerRepository>();
+                .AddScoped<IUserRepository, UserRepository>();
         }
         public static IServiceCollection AddBlobStorage(this IServiceCollection services)
         {

@@ -5,6 +5,8 @@ namespace ArquiveSe.Infra.Storage
 {
     internal class AzureBlobStorageRepository : IBlobRepository
     {
+        private const string BLOB_CONTAINER_NAME = "managed-files";
+
         private readonly BlobServiceClient _blobServiceClient;
 
         public AzureBlobStorageRepository(BlobServiceClient blobServiceClient)
@@ -15,7 +17,7 @@ namespace ArquiveSe.Infra.Storage
         public async Task<Stream> GetStreamById(string id)
         {
             var content = await _blobServiceClient
-                .GetBlobContainerClient("managed-files")
+                .GetBlobContainerClient(BLOB_CONTAINER_NAME)
                 .GetBlobClient(id)
                 .DownloadStreamingAsync();
             return content.Value.Content;
@@ -23,9 +25,8 @@ namespace ArquiveSe.Infra.Storage
 
         public async Task UploadFile(string id, Stream stream)
         {
-            stream.Position = 0;
             await _blobServiceClient
-                .GetBlobContainerClient("managed-files")
+                .GetBlobContainerClient(BLOB_CONTAINER_NAME)
                 .UploadBlobAsync(id, stream);
         }
     }
