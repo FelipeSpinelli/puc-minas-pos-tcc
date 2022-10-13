@@ -1,9 +1,22 @@
 ﻿@page "/"
+@attribute [Authorize]
+@inject NavigationManager NavigationManager;
 
 <PageTitle>Index</PageTitle>
+
+@using ArquiveSe.UI.Authorization
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState> _authenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await _authenticationStateTask).User;
+        RedirectUserWithoutAccount.Validate(user, NavigationManager);
+    }
+}
