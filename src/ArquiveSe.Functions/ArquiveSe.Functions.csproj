@@ -6,7 +6,10 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
 		<PackageReference Include="Microsoft.Azure.WebJobs.Extensions.OpenApi.Core" Version="1.4.0" />
+		<PackageReference Include="Microsoft.IdentityModel.Protocols" Version="6.10.2" />
+		<PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="6.10.2" />
 		<PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.0.1" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.2" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\ArquiveSe.Application\ArquiveSe.Application.csproj" />

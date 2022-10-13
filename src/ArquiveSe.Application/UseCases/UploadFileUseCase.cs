@@ -1,7 +1,7 @@
 ﻿using ArquiveSe.Application.UseCases.Abstractions;
+using ArquiveSe.Application.UseCases.Models.Requests;
 using ArquiveSe.Core.Domain.Commands;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
 namespace ArquiveSe.Application.UseCases
@@ -19,16 +19,14 @@ namespace ArquiveSe.Application.UseCases
             _logger = logger;
         }
 
-        public async Task<object> Execute(HttpRequest request)
+        public async Task<object> Execute(UploadFileRequest request)
         {
-            await request.ReadFormAsync();
-            var file = request.Form.Files["file"];
-
             var command = new CreateFileCommand
             {
-                Name = file.FileName,
-                UserId = Guid.NewGuid().ToString(),
-                FileStream = file.OpenReadStream()
+                AccountId = request.AccountId,
+                UserId = request.UserId,
+                Name = request.File.FileName,
+                FileStream = request.File.OpenReadStream()
             };
 
             await _bus.Send(command);

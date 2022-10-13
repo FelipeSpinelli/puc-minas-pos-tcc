@@ -1,0 +1,26 @@
+﻿@inject NavigationManager NavigationManager;
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState> _authenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authenticationState = await _authenticationStateTask;
+
+        var user = authenticationState?.User;
+        if (user?.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            return;
+        }
+
+        NavigationManager.NavigateTo("/", true);
+
+        //if (user.HasClaim(x => x.Type.Equals("AccountId")))
+        //{
+        //    return;
+        //}
+
+        //NavigationManager.NavigateTo("/create-account");
+    }
+}

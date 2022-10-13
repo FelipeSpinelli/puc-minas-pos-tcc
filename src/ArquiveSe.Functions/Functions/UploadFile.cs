@@ -1,4 +1,6 @@
 using ArquiveSe.Application.UseCases.Abstractions;
+using ArquiveSe.Functions.Authorization;
+using ArquiveSe.Functions.Authorization.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -8,6 +10,7 @@ using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ArquiveSe.Functions.Functions
@@ -24,14 +27,26 @@ namespace ArquiveSe.Functions.Functions
         }
 
         [FunctionName("UploadFile")]
-        [OpenApiOperation(operationId: "Run", tags: new[] { "name" })]
+        [OpenApiOperation(operationId: "UploadFile", tags: new[] { "UploadFile" })]
         [OpenApiSecurity("openid", SecuritySchemeType.OpenIdConnect, Name = "code", In = OpenApiSecurityLocationType.Query)]
-        [OpenApiParameter(name: "name", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "The **Name** parameter")]
-        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(string), Description = "The OK response")]
+        [OpenApiRequestBody(contentType: "multipart/form-data", bodyType: typeof(IFormCollection), Description = "")]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(string), Description = "")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "files/upload")] HttpRequest req)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "files/upload")] HttpRequest req)
         {
-            return new OkObjectResult(await _useCase.Execute(req));
+            req.Headers.TryGetValue("Authorization", out var authorizationHeader);
+            var authenticatedUser = await Authorizer.ValidateTokenAsync(authorizationHeader.ToString());
+            if (!authenticatedUser.IsAuthenticated ||
+                !authenticatedUser.IsAuthorized("UploadFile"))
+            {
+                return new UnauthorizedResult();
+            }
+
+            var accountId = req.Headers["AccountId"].ToString();
+            var userId = req.Headers["UserId"].ToString();
+            await req.ReadFormAsync();
+
+            return new OkObjectResult(await _useCase.Execute(new(accountId, userId, req.Form)));
         }
     }
 }
