@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Security.Claims;
 
-namespace ArquiveSe.UI.Authorization
+namespace ArquiveSe.UI.Shared.Authorization
 {
     public class RedirectUserWithoutAccount
     {
