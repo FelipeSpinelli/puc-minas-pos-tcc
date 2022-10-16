@@ -9,7 +9,8 @@ namespace ArquiveSe.Application.DependencyInjection
         public static IServiceCollection AddUseCases(this IServiceCollection services)
         {
             return services
-                .AddScoped<IUploadFileUseCase, UploadFileUseCase>();
+                .AddScoped<IUploadFileUseCase, UploadFileUseCase>()
+                .AddScoped<ICreateAccountUseCase, CreateAccountUseCase>();
         }
     }
 }

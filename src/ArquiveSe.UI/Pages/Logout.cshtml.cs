@@ -8,6 +8,13 @@ namespace ArquiveSe.UI.Pages
 {
     public class LogoutModel : PageModel
     {
+        private readonly IAuthorizationService _authorizationService;
+
+        public LogoutModel(IAuthorizationService authorizationService)
+        {
+            _authorizationService = authorizationService;
+        }
+
         [Authorize]
         public async Task OnGet()
         {
@@ -17,6 +24,8 @@ namespace ArquiveSe.UI.Pages
 
             await HttpContext.SignOutAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var user = _authorizationService.
         }
     }
 }

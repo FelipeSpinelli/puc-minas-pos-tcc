@@ -1,4 +1,5 @@
 using ArquiveSe.UI.Data;
+using ArquiveSe.UI.DepedencyInjection;
 using Auth0.AspNetCore.Authentication;
 using System.Reflection;
 
@@ -7,6 +8,7 @@ builder.Configuration
     .AddUserSecrets(Assembly.GetExecutingAssembly(), true);
 
 // Add services to the container.
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
@@ -14,6 +16,7 @@ builder.Services.AddAuth0WebAppAuthentication(options => {
     options.Domain = builder.Configuration["Auth0:Domain"];
     options.ClientId = builder.Configuration["Auth0:ClientId"];
 });
+builder.Services.AddClients();
 
 var app = builder.Build();
 

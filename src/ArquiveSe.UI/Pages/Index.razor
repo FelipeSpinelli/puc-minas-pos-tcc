@@ -1,10 +1,12 @@
 ﻿@page "/"
 @attribute [Authorize]
 @inject NavigationManager NavigationManager;
+@inject IHttpContextAccessor HttpContextAccessor;
 
 <PageTitle>Index</PageTitle>
 
-@using ArquiveSe.UI.Authorization
+@using ArquiveSe.UI.Shared.Authorization
+@using System.Security.Claims
 
 <h1>Hello, world!</h1>
 
@@ -17,6 +19,17 @@ Welcome to your new app.
     protected override async Task OnInitializedAsync()
     {
         var user = (await _authenticationStateTask).User;
-        RedirectUserWithoutAccount.Validate(user, NavigationManager);
+        RedirectUserWithoutAccount(user);
+    }
+
+    private void RedirectUserWithoutAccount(ClaimsPrincipal user)
+    {
+        var userId = user.GetUserId();
+        var accountId = HttpContextAccessor?.GetAccountId(userId) ?? string.Empty;
+
+        if (string.IsNullOrEmpty(accountId))
+        {
+            NavigationManager.NavigateTo("/createaccount", true);
+        }        
     }
 }
