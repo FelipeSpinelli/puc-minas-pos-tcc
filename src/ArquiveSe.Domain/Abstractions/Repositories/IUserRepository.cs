@@ -5,6 +5,6 @@ namespace ArquiveSe.Domain.Abstractions.Repositories
 {
     public interface IUserRepository : IRepository<User, Guid>
     {
-        Task<User> GetByExternalId(string externalId);
+        Task<User?> GetByExternalId(string externalId);
     }
 }

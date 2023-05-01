@@ -1,4 +1,5 @@
 ﻿using ArquiveSe.Core.Domain.Models.Entities;
+using ArquiveSe.Core.Domain.Models.ValueObjects;
 using ArquiveSe.Domain.Abstractions.Repositories;
 using MediatR;
 
@@ -23,10 +24,7 @@ namespace ArquiveSe.Core.Domain.Commands.Handlers
 
         public async Task<Unit> Handle(CreateFileCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetByExternalId(request.UserId);
-            var managedFile = new ManagedFile(request.Name, user.GetManagedFileOwner());
-            await _blobRepository.UploadFile(managedFile.Id.Value.ToString(), request.FileStream);
-            await _managedFileRepository.Upsert(managedFile);
+            
 
             return Unit.Value;
         }

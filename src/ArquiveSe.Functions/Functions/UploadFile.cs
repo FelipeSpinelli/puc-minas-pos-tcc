@@ -15,7 +15,6 @@ namespace ArquiveSe.Functions.Functions
     {
         private readonly IUploadFileUseCase _useCase;
 
-
         public UploadFile(
             IUploadFileUseCase useCase)
         {
@@ -30,8 +29,8 @@ namespace ArquiveSe.Functions.Functions
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = "files/upload")] HttpRequest req)
         {
-            var accountId = req.Headers["AccountId"].ToString();
-            var userId = req.Headers["UserId"].ToString();
+            req.Headers.TryGetValue("AccountId", out var accountId);
+            req.Headers.TryGetValue("UserId", out var userId);
             await req.ReadFormAsync();
 
             return new OkObjectResult(await _useCase.Execute(new(accountId, userId, req.Form)));

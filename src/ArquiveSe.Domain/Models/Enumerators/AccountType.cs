@@ -2,6 +2,7 @@
 {
     public enum AccountType
     {
+        None,
         Odd,
         Enterprise
     }

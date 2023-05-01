@@ -14,7 +14,7 @@ namespace ArquiveSe.Infra.Data.Repositories
         {
         }
 
-        public async Task<User> GetByExternalId(string externalId)
+        public async Task<User?> GetByExternalId(string externalId)
         {
             var filter = Builders<User>.Filter.Eq(x => x.ExternalId, externalId);
             var query = await _collection.FindAsync(filter);

@@ -1,0 +1,45 @@
+﻿@page "/download/{id}"
+@using ArquiveSe.App.Services.ArquiveSeApi;
+@using System.Buffers;
+@using Microsoft.Extensions.Options;
+@inject IArquiveSeApiClient _apiClient;
+@inject IJSRuntime _jsRuntime;
+
+<PageTitle>Download</PageTitle>
+
+@if (!_downloadReady)
+{
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7" />
+    <MudText Typo="Typo.h4">Preparando download...</MudText>
+}
+else
+{
+    <MudButton Href="@($"data:application/zip;charset=utf-8,X")"
+           Target="_blank"
+           Variant="Variant.Filled"
+           EndIcon="@Icons.Material.Filled.ArrowDownward"
+           Color="Color.Info"
+           FullWidth="true"
+           UserAttributes="@(new Dictionary<string, object>{ {"download","chave_acesso.json"} })">
+        Clique para fazer o download
+    </MudButton>
+}
+
+@code {
+    private bool _downloadReady = false;
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    private async Task DownloadFileFromStream()
+    {
+        var fileStream = new MemoryStream();
+        var fileName = "log.bin";
+
+        using var streamRef = new DotNetStreamReference(stream: fileStream);
+
+        await _jsRuntime.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
+    }
+}
