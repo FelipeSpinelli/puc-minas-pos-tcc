@@ -1,9 +1,8 @@
-﻿using ArquiveSe.Domain.Abstractions.Repositories;
-using Azure.Storage.Blobs;
+﻿using Azure.Storage.Blobs;
 
 namespace ArquiveSe.Infra.Storage
 {
-    internal class AzureBlobStorageRepository : IBlobRepository
+    internal class AzureBlobStorageRepository
     {
         private const string BLOB_CONTAINER_NAME = "managed-files";
 

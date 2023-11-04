@@ -1,7 +1,6 @@
-﻿namespace ArquiveSe.Application.UseCases.Abstractions
+﻿namespace ArquiveSe.Application.UseCases.Abstractions;
+
+public interface IUseCase<TInput, TOutput>
 {
-    public interface IUseCase<TRequest, TResponse>
-    {
-        Task<TResponse> Execute(TRequest request);
-    }
+    Task<TOutput> Execute(TInput input);
 }
