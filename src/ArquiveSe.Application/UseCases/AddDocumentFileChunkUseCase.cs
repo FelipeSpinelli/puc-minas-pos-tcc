@@ -10,13 +10,16 @@ namespace ArquiveSe.Application.UseCases;
 public class AddDocumentFileChunkUseCase : BaseUseCase, IAddDocumentFileChunkUseCase
 {
     private readonly IFileStoragePort _fileStorage;
+    private readonly IOperationLockerPort _operationLocker;
 
     public AddDocumentFileChunkUseCase(
         IPersistenceDbPort persistenceDb,
-        IFileStoragePort fileStorage)
+        IFileStoragePort fileStorage,
+        IOperationLockerPort operationLocker)
         : base(persistenceDb)
     {
         _fileStorage = fileStorage;
+        _operationLocker = operationLocker;
     }
 
     public async Task<NoOutput> Execute(AddDocumentFileChunkInput input)
@@ -24,12 +27,20 @@ public class AddDocumentFileChunkUseCase : BaseUseCase, IAddDocumentFileChunkUse
         var document = await _persistenceDb.LoadAggregate<Document>(input.Id)
             ?? throw new ApplicationException($"Document {input.Id} was not found!");
 
+        var lockerKey = $"{nameof(Document)}:{document.Id}";
+        if (!await _operationLocker.TryLock(lockerKey))
+        {
+            throw new ApplicationException($"Document {document.Id} is locked!");
+        }
+
         var stream = await BuildStream(document, input);
         await _fileStorage.Save(document, stream);
 
         document.UpdateFileCurrentSize((ulong)stream.Length);
 
         await PersistEventsOf(document);
+
+        await _operationLocker.Unlock(lockerKey);
 
         return NoOutput.Value;
     }
