@@ -1,4 +1,4 @@
-﻿namespace ArquiveSe.Application.Models.Outputs;
+﻿namespace ArquiveSe.Application.Models.Commands.Outputs;
 
 public record CreateDocumentOutput
 {

@@ -1,13 +1,12 @@
-﻿using ArquiveSe.Application.Models.Inputs;
-using ArquiveSe.Application.Models.Outputs;
+﻿using ArquiveSe.Application.Models.Commands.Inputs;
+using ArquiveSe.Application.Models.Commands.Outputs;
 using ArquiveSe.Application.Ports.Driven;
 using ArquiveSe.Application.UseCases.Abstractions;
 using ArquiveSe.Domain.Entities;
 using System.Buffers;
 
-namespace ArquiveSe.Application.UseCases;
-
-public class AddDocumentFileChunkUseCase : BaseUseCase, IAddDocumentFileChunkUseCase
+namespace ArquiveSe.Application.UseCases.Commands;
+public class AddDocumentFileChunkUseCase : BaseCommandUseCase, IAddDocumentFileChunkUseCase
 {
     private readonly IFileStoragePort _fileStorage;
     private readonly IOperationLockerPort _operationLocker;

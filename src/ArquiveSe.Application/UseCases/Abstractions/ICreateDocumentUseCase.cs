@@ -1,5 +1,5 @@
-﻿using ArquiveSe.Application.Models.Inputs;
-using ArquiveSe.Application.Models.Outputs;
+﻿using ArquiveSe.Application.Models.Commands.Inputs;
+using ArquiveSe.Application.Models.Commands.Outputs;
 
 namespace ArquiveSe.Application.UseCases.Abstractions;
 

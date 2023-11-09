@@ -1,6 +1,6 @@
 ﻿using ArquiveSe.Application.Models.Dtos;
 
-namespace ArquiveSe.Application.Models.Inputs;
+namespace ArquiveSe.Application.Models.Commands.Inputs;
 public record CreateDocumentInput
 {
     public string ExternalId { get; set; } = null!;

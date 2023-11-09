@@ -1,4 +1,4 @@
-﻿namespace ArquiveSe.Application.Models.Inputs;
+﻿namespace ArquiveSe.Application.Models.Commands.Inputs;
 
 public record AddDocumentFileChunkInput
 {

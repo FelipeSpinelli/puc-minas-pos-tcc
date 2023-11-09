@@ -5,5 +5,5 @@ public enum EDocumentStatus
     Created,
     Reviewed,
     Approved,
-    Uploaded
+    Ready
 }

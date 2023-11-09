@@ -1,13 +1,13 @@
-﻿using ArquiveSe.Application.Models.Inputs;
-using ArquiveSe.Application.Models.Outputs;
+﻿using ArquiveSe.Application.Models.Commands.Inputs;
+using ArquiveSe.Application.Models.Commands.Outputs;
 using ArquiveSe.Application.Ports.Driven;
 using ArquiveSe.Application.UseCases.Abstractions;
 using ArquiveSe.Domain.Entities;
 using ArquiveSe.Domain.Enumerators;
 using ArquiveSe.Domain.ValueObjects;
 
-namespace ArquiveSe.Application.UseCases;
-public class CreateDocumentUseCase : BaseUseCase, ICreateDocumentUseCase
+namespace ArquiveSe.Application.UseCases.Commands;
+public class CreateDocumentUseCase : BaseCommandUseCase, ICreateDocumentUseCase
 {
     private readonly IFolderReadDbPort _folderReadDb;
 
@@ -27,7 +27,7 @@ public class CreateDocumentUseCase : BaseUseCase, ICreateDocumentUseCase
         var sequential = await _persistenceDb.GetNextDocumentSequentialToFolder(folder.Id);
         var permissions = input.InheritFolderPermissions ?
             folder.Permissions.Combine(input.CustomPermissions) :
-            (input.CustomPermissions ?? new());
+            input.CustomPermissions ?? new();
 
         var document = new Document
         (

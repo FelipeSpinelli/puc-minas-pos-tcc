@@ -14,6 +14,7 @@ public class Document : AggregateRoot
     public EDocumentStatus Status { get; private set; }
     public Permissions Permissions { get; private set; } = Permissions.Empty;
     public FileData File { get; private set; } = new();
+    public ICollection<Review> Reviews { get; private set; } = new List<Review>(0);
 
     public Document()
     {
@@ -55,7 +56,7 @@ public class Document : AggregateRoot
 
         ApplyEvent(currentSizeUpdatedEvent);
         RaiseEvent(currentSizeUpdatedEvent);
-        
+
         if (!File.IsCompleted)
         {
             return;
@@ -64,6 +65,18 @@ public class Document : AggregateRoot
         var documentFileUploadedEvent = new DocumentFileUploaded(Id);
         ApplyEvent(documentFileUploadedEvent);
         RaiseEvent(documentFileUploadedEvent);
+    }
+
+    public void AddReview(Review review)
+    {
+        var @event = new DocumentReviewAdded
+        (
+            Id,
+            review
+        );
+
+        ApplyEvent(@event);
+        RaiseEvent(@event);
     }
 
     protected void OnDocumentCreated(DocumentCreated @event)
@@ -89,6 +102,25 @@ public class Document : AggregateRoot
 
     protected void OnDocumentFileUploaded(DocumentFileUploaded @event)
     {
-        Status = EDocumentStatus.Uploaded;
+        Status = EDocumentStatus.Ready;
+    }
+
+    protected void OnDocumentReviewAdded(DocumentReviewAdded @event)
+    {
+        if (Status != EDocumentStatus.Ready)
+        {
+            throw new ApplicationException($"Documents with {Status} status cannot be reviewed!");
+        }
+
+        if (!Permissions.Reviewers.Contains(@event.Review.ReviewerId))
+        {
+            throw new ApplicationException($"{@event.Review.ReviewerId} is not a valid reviewer!");
+        }
+
+        Reviews.Add(@event.Review);
+
+        Status = Reviews.All(x => x.IsResolved || !x.RequiresChanges) ? 
+            EDocumentStatus.Reviewed : 
+            EDocumentStatus.Ready;
     }
 }

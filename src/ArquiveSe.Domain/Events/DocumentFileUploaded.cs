@@ -5,7 +5,8 @@ namespace ArquiveSe.Domain.Events;
 
 public record DocumentFileUploaded : Event
 {
-    public DocumentFileUploaded() : base(typeof(Document).FullName!, string.Empty)
+    public DocumentFileUploaded() 
+        : base(typeof(Document).FullName!, string.Empty)
     {
     }
 

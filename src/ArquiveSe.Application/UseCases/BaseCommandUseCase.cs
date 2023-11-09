@@ -3,11 +3,11 @@ using ArquiveSe.Domain.Shared;
 
 namespace ArquiveSe.Application.UseCases;
 
-public abstract class BaseUseCase
+public abstract class BaseCommandUseCase
 {
     protected readonly IPersistenceDbPort _persistenceDb;
 
-    protected BaseUseCase(IPersistenceDbPort persistenceDb)
+    protected BaseCommandUseCase(IPersistenceDbPort persistenceDb)
     {
         _persistenceDb = persistenceDb;
     }
