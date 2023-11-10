@@ -4,8 +4,7 @@ namespace ArquiveSe.Application.Ports.Driven;
 
 public interface IPersistenceDbPort
 {
-    Task<T> LoadAggregate<T>(string aggregateId);
+    Task<T> LoadAggregate<T>(string aggregateId) where T : AggregateRoot;
     Task AddEvent(Event @event);
     Task SaveAndNotifyEvents();
-    Task<ushort> GetNextDocumentSequentialToFolder(string folderId);
 }

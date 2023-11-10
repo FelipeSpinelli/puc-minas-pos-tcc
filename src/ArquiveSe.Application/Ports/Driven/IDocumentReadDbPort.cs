@@ -2,7 +2,6 @@
 using System.Linq.Expressions;
 
 namespace ArquiveSe.Application.Ports.Driven;
-
 public interface IDocumentReadDbPort
 {
     Task<DocumentProjection> GetDocumentById(string id);

@@ -20,6 +20,18 @@ public abstract class AggregateRoot : Entity
         applyEventMethod.Invoke(this, new object[] { @event });
     }
 
+    public bool TryGetEvent(out Event? @event)
+    {
+        @event = null;
+
+        if (!_eventsQueue.TryDequeue(out var e))
+        {
+            return false;
+        }
+
+        @event = e;
+        return true;
+    }
+
     protected void RaiseEvent(Event @event) => _eventsQueue.Enqueue(@event);
-    public bool TryGetEvent(out Event @event) => _eventsQueue.TryDequeue(out @event);
 }

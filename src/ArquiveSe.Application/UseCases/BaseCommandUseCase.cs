@@ -16,7 +16,7 @@ public abstract class BaseCommandUseCase
     {
         while (aggregateRoot!.TryGetEvent(out var @event))
         {
-            await _persistenceDb.AddEvent(@event);
+            await _persistenceDb.AddEvent(@event!);
         }
 
         await _persistenceDb.SaveAndNotifyEvents();

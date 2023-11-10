@@ -12,13 +12,19 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.13.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.24" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ArquiveSe.Application\ArquiveSe.Application.csproj" />
     <ProjectReference Include="..\ArquiveSe.Domain\ArquiveSe.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Databases\Read\" />
   </ItemGroup>
 
 </Project>
