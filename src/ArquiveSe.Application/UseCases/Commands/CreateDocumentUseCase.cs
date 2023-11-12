@@ -7,7 +7,7 @@ using ArquiveSe.Domain.Enumerators;
 using ArquiveSe.Domain.ValueObjects;
 
 namespace ArquiveSe.Application.UseCases.Commands;
-public class CreateDocumentUseCase : BaseCommandUseCase, ICreateDocumentUseCase
+public class CreateDocumentUseCase : BaseCommandUseCase<CreateDocumentInput, CreateDocumentOutput>, ICreateDocumentUseCase
 {
     private readonly IFolderReadDbPort _folderReadDb;
 
@@ -19,12 +19,11 @@ public class CreateDocumentUseCase : BaseCommandUseCase, ICreateDocumentUseCase
         _folderReadDb = folderReadDb;
     }
 
-    public async Task<CreateDocumentOutput> Execute(CreateDocumentInput input)
+    public override async Task<CreateDocumentOutput> Execute(CreateDocumentInput input)
     {
         var folder = await _folderReadDb.GetFolderById(input.FolderId)
             ?? throw new ApplicationException($"Folder {input.FolderId} was not found!");
 
-        var sequential = await _persistenceDb.GetNextDocumentSequentialToFolder(folder.Id);
         var permissions = input.InheritFolderPermissions ?
             folder.Permissions.Combine(input.CustomPermissions) :
             input.CustomPermissions ?? new();
@@ -33,8 +32,6 @@ public class CreateDocumentUseCase : BaseCommandUseCase, ICreateDocumentUseCase
         (
             input.ExternalId,
             folder.Id,
-            folder.Code,
-            sequential,
             input.Name,
             (EDocumentType)Enum.Parse(typeof(EDocumentType), input.Type),
             new Permissions(permissions.Reviewers, permissions.Approvers),
@@ -46,7 +43,7 @@ public class CreateDocumentUseCase : BaseCommandUseCase, ICreateDocumentUseCase
         return new()
         {
             Id = document.Id,
-            Code = document.Code
+            ExternalId = document.ExternalId
         };
     }
 }

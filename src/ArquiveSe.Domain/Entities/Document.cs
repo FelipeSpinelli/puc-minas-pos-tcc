@@ -9,7 +9,6 @@ public class Document : AggregateRoot
 {
     public string FolderId { get; private set; } = null!;
     public string Name { get; private set; } = null!;
-    public string Code { get; private set; } = null!;
     public EDocumentType Type { get; private set; }
     public EDocumentStatus Status { get; private set; }
     public Permissions Permissions { get; private set; } = Permissions.Empty;
@@ -23,8 +22,6 @@ public class Document : AggregateRoot
     public Document(
         string externalId,
         string folderId,
-        string folderCode,
-        ushort sequential,
         string name,
         EDocumentType type,
         Permissions permissions,
@@ -36,7 +33,6 @@ public class Document : AggregateRoot
             externalId,
             folderId,
             name,
-            $"{folderCode}-{sequential:0000}",
             type,
             permissions!,
             expectedSize
@@ -85,7 +81,6 @@ public class Document : AggregateRoot
         ExternalId = @event.ExternalId;
         FolderId = @event.FolderId;
         Name = @event.Name;
-        Code = @event.Code;
         Type = @event.Type;
         Permissions = @event.Permissions;
         File = new() { ExpectedSize = @event.ExpectedSize };

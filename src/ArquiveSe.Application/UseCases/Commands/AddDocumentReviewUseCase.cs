@@ -7,13 +7,13 @@ using ArquiveSe.Domain.ValueObjects;
 
 namespace ArquiveSe.Application.UseCases.Commands;
 
-public class AddDocumentReviewUseCase : BaseCommandUseCase, IAddDocumentReviewUseCase
+public class AddDocumentReviewUseCase : BaseCommandUseCase<AddDocumentReviewInput, NoOutput>, IAddDocumentReviewUseCase
 {
     public AddDocumentReviewUseCase(IPersistenceDbPort persistenceDb) : base(persistenceDb)
     {
     }
 
-    public async Task<NoOutput> Execute(AddDocumentReviewInput input)
+    public override async Task<NoOutput> Execute(AddDocumentReviewInput input)
     {
         var document = await _persistenceDb.LoadAggregate<Document>(input.Id)
             ?? throw new ApplicationException($"Document {input.Id} was not found!");

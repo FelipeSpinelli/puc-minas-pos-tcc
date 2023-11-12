@@ -3,6 +3,6 @@ using ArquiveSe.Application.Models.Commands.Outputs;
 
 namespace ArquiveSe.Application.UseCases.Abstractions;
 
-public interface IAddDocumentFileChunkUseCase : IUseCase<AddDocumentFileChunkInput, NoOutput>
+public interface IAddDocumentFileChunkUseCase : ICommandUseCase<AddDocumentFileChunkInput, NoOutput>
 {
 }

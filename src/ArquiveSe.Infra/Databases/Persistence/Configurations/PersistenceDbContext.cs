@@ -9,6 +9,11 @@ public class PersistenceDbContext : DbContext
 {
     public DbSet<EventDto> Events { get; set; }
 
+    public PersistenceDbContext(DbContextOptions<PersistenceDbContext> options)
+        : base(options)
+    {      
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

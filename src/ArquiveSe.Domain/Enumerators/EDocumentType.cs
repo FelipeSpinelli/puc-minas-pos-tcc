@@ -2,8 +2,8 @@
 
 public enum EDocumentType
 {
-    Docx,
-    Xlxs,
+    Doc,
+    Xls,
     Pdf,
     Ppt
 }

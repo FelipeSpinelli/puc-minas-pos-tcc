@@ -2,14 +2,14 @@
 using ArquiveSe.Domain.Enumerators;
 using ArquiveSe.Domain.Shared;
 using ArquiveSe.Domain.ValueObjects;
+using MediatR;
 
 namespace ArquiveSe.Domain.Events;
-public record DocumentCreated : Event
+public record DocumentCreated : Event, INotification
 {
     public string ExternalId { get; set; } = null!;
     public string FolderId { get; set; } = null!;
     public string Name { get; set; } = null!;
-    public string Code { get; set; } = null!;
     public EDocumentType Type { get; set; }
     public Permissions Permissions { get; set; } = Permissions.Empty;
     public ulong ExpectedSize { get; set; }
@@ -23,7 +23,6 @@ public record DocumentCreated : Event
         string externalId,
         string folderId,
         string name,
-        string code,
         EDocumentType type,
         Permissions permissions,
         ulong expectedSize) : base(typeof(Folder).FullName!, documentId)
@@ -31,7 +30,6 @@ public record DocumentCreated : Event
         ExternalId = externalId;
         FolderId = folderId;
         Name = name;
-        Code = code;
         Type = type;
         Permissions = permissions;
         ExpectedSize = expectedSize;

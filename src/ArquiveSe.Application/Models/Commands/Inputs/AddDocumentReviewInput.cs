@@ -1,6 +1,9 @@
-﻿namespace ArquiveSe.Application.Models.Commands.Inputs;
+﻿using ArquiveSe.Application.Models.Commands.Outputs;
+using MediatR;
 
-public record AddDocumentReviewInput
+namespace ArquiveSe.Application.Models.Commands.Inputs;
+
+public record AddDocumentReviewInput : IRequest<NoOutput>
 {
     public string Id { get; set; } = null!;
     public string ReviewerId { get; set; } = null!;

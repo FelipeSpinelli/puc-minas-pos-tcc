@@ -3,6 +3,6 @@ using ArquiveSe.Application.Models.Commands.Outputs;
 
 namespace ArquiveSe.Application.UseCases.Abstractions;
 
-public interface ICreateDocumentUseCase : IUseCase<CreateDocumentInput, CreateDocumentOutput>
+public interface ICreateDocumentUseCase : ICommandUseCase<CreateDocumentInput, CreateDocumentOutput>
 {
 }

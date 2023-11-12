@@ -1,7 +1,9 @@
-﻿using ArquiveSe.Application.Models.Dtos;
+﻿using ArquiveSe.Application.Models.Commands.Outputs;
+using ArquiveSe.Application.Models.Dtos;
+using MediatR;
 
 namespace ArquiveSe.Application.Models.Commands.Inputs;
-public record CreateDocumentInput
+public record CreateDocumentInput : IRequest<CreateDocumentOutput>
 {
     public string ExternalId { get; set; } = null!;
     public string FolderId { get; set; } = null!;

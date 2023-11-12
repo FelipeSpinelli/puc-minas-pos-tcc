@@ -1,6 +1,9 @@
-﻿namespace ArquiveSe.Application.Models.Commands.Inputs;
+﻿using ArquiveSe.Application.Models.Commands.Outputs;
+using MediatR;
 
-public record AddDocumentFileChunkInput
+namespace ArquiveSe.Application.Models.Commands.Inputs;
+
+public record AddDocumentFileChunkInput : IRequest<NoOutput>
 {
     public string Id { get; set; } = null!;
     public int Position { get; set; }

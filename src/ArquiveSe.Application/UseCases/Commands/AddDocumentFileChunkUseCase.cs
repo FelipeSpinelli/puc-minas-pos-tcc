@@ -6,7 +6,7 @@ using ArquiveSe.Domain.Entities;
 using System.Buffers;
 
 namespace ArquiveSe.Application.UseCases.Commands;
-public class AddDocumentFileChunkUseCase : BaseCommandUseCase, IAddDocumentFileChunkUseCase
+public class AddDocumentFileChunkUseCase : BaseCommandUseCase<AddDocumentFileChunkInput, NoOutput>, IAddDocumentFileChunkUseCase
 {
     private readonly IFileStoragePort _fileStorage;
     private readonly IOperationLockerPort _operationLocker;
@@ -21,7 +21,7 @@ public class AddDocumentFileChunkUseCase : BaseCommandUseCase, IAddDocumentFileC
         _operationLocker = operationLocker;
     }
 
-    public async Task<NoOutput> Execute(AddDocumentFileChunkInput input)
+    public override async Task<NoOutput> Execute(AddDocumentFileChunkInput input)
     {
         var document = await _persistenceDb.LoadAggregate<Document>(input.Id)
             ?? throw new ApplicationException($"Document {input.Id} was not found!");
