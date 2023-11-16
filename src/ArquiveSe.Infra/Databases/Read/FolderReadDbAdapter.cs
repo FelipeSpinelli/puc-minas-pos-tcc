@@ -20,4 +20,13 @@ public class FolderReadDbAdapter : IFolderReadDbPort
 
         return await cursor.FirstOrDefaultAsync();
     }
+
+    public async Task Upsert(FolderProjection folder)
+    {
+        var exists = (await _collection.CountDocumentsAsync(x => x.Id == folder.Id)) != 0;
+
+        await (exists ?
+            _collection.FindOneAndReplaceAsync(x => x.Id == folder.Id, folder) :
+            _collection.InsertOneAsync(folder));
+    }
 }

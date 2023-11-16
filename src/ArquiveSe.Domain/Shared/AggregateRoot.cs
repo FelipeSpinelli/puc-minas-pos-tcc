@@ -1,4 +1,6 @@
-﻿namespace ArquiveSe.Domain.Shared;
+﻿using System.Reflection;
+
+namespace ArquiveSe.Domain.Shared;
 
 public abstract class AggregateRoot : Entity
 {
@@ -15,7 +17,9 @@ public abstract class AggregateRoot : Entity
     public virtual void ApplyEvent(Event @event)
     {
         var type = GetType();
-        var applyEventMethod = type.GetMethods().Single(x => x.Name.Equals($"On{@event.GetType().Name}"))!;
+        var applyEventMethod = type
+            .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic)
+            .Single(x => x.Name.Equals($"On{@event.GetType().Name}"))!;
 
         applyEventMethod.Invoke(this, new object[] { @event });
     }

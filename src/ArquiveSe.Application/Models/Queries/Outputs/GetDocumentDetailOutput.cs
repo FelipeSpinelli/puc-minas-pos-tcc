@@ -13,7 +13,7 @@ public class GetDocumentDetailOutput
 
     public GetDocumentDetailOutput(DocumentProjection projection)
     {
-        Id = projection.ExternalId;
+        Id = projection.Id;
         Folder = projection.Folder.Name;
         Name = projection.Name;
         Type = projection.Type;

@@ -12,6 +12,10 @@ public class EventDto
     public DateTime Timestamp { get; set; } = DateTime.UtcNow;
     public string Data { get; set; } = string.Empty;
 
+    public EventDto()
+    {            
+    }
+
     public EventDto(Event @event)
     {
         Id = @event.Id;

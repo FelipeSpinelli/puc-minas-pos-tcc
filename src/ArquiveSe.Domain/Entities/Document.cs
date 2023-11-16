@@ -7,6 +7,7 @@ namespace ArquiveSe.Domain.Entities;
 
 public class Document : AggregateRoot
 {
+    public string AccountId { get; private set; } = null!;
     public string FolderId { get; private set; } = null!;
     public string Name { get; private set; } = null!;
     public EDocumentType Type { get; private set; }
@@ -20,6 +21,7 @@ public class Document : AggregateRoot
     }
 
     public Document(
+        string accountId,
         string externalId,
         string folderId,
         string name,
@@ -30,6 +32,7 @@ public class Document : AggregateRoot
         var @event = new DocumentCreated
         (
             Id,
+            accountId,
             externalId,
             folderId,
             name,

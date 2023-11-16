@@ -6,6 +6,7 @@ namespace ArquiveSe.Domain.Events;
 
 public record FolderCreated : Event
 {
+    public string AccountId { get; set; } = null!;
     public string ExternalId { get; set; } = null!;
     public string FlowId { get; set; } = null!;
     public string Name { get; set; } = null!;
@@ -18,8 +19,9 @@ public record FolderCreated : Event
     }
 
     public FolderCreated(
-        string externalId,
         string folderId,
+        string accountId,
+        string externalId,
         string flowId,
         string name,
         string code,
@@ -27,6 +29,7 @@ public record FolderCreated : Event
         Folder? parentFolder) : base(typeof(Folder).FullName!, folderId)
     {
         ExternalId = externalId;
+        AccountId = accountId;
         FlowId = flowId;
         Name = name;
         Code = code;

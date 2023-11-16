@@ -5,7 +5,7 @@ namespace ArquiveSe.Application.Models.Projections;
 public class DocumentProjection
 {
     public string Id { get; set; } = null!;
-    public string ExternalId { get; set; } = null!;
+    public string AccountId { get; set; } = null!;
     public string FolderId { get; set; } = null!;
     public FolderSummaryDto Folder { get; set; } = new();
     public string Name { get; set; } = null!;

@@ -19,6 +19,7 @@ public static class ReadDbPortsExtensions
                 return sp.GetRequiredService<IMongoClient>().GetDatabase(nameof(ArquiveSe));
             })
             .AddScoped<IDocumentReadDbPort, DocumentReadDbAdapter>()
-            .AddScoped<IFolderReadDbPort, FolderReadDbAdapter>();
+            .AddScoped<IFolderReadDbPort, FolderReadDbAdapter>()
+            .AddScoped<IFlowReadDbPort, FlowReadDbAdapter>();
     }
 }

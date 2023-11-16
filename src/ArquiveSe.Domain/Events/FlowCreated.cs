@@ -6,6 +6,7 @@ namespace ArquiveSe.Domain.Events;
 
 public record FlowCreated : Event
 {
+    public string AccountId { get; set; } = null!;
     public string ExternalId { get; set; } = null!;
     public string Name { get; set; } = null!;
     public string Description { get; set; } = null!;
@@ -17,12 +18,14 @@ public record FlowCreated : Event
 
     public FlowCreated(
         string flowId,
+        string accountId,
         string externalId,
         string name,
         string description,
         Permissions permissions) : base(typeof(Folder).FullName!, flowId)
     {
         ExternalId = externalId;
+        AccountId = accountId;
         Name = name;
         Description = description;
         Permissions = permissions;

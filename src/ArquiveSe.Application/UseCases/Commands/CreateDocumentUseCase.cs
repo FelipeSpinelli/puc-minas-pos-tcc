@@ -30,6 +30,7 @@ public class CreateDocumentUseCase : BaseCommandUseCase<CreateDocumentInput, Cre
 
         var document = new Document
         (
+            input.AccountId,
             input.ExternalId,
             folder.Id,
             input.Name,

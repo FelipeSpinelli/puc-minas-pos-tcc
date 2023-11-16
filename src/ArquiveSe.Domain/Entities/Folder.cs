@@ -6,6 +6,7 @@ namespace ArquiveSe.Domain.Entities;
 
 public class Folder : AggregateRoot
 {
+    public string AccountId { get; private set; } = null!;
     public string Name { get; private set; } = null!;
     public string Code { get; private set; } = null!;
     public string FlowId { get; private set; } = null!;
@@ -17,6 +18,7 @@ public class Folder : AggregateRoot
     }
 
     public Folder(
+        string accountId,
         string externalId,
         string flowId,
         string name,
@@ -27,6 +29,7 @@ public class Folder : AggregateRoot
         var @event = new FolderCreated
         (
             Id,
+            accountId,
             externalId,
             flowId,
             name,
@@ -42,6 +45,7 @@ public class Folder : AggregateRoot
     protected void OnFolderCreated(FolderCreated @event)
     {
         Id = @event.AggregateId;
+        AccountId = @event.AccountId;
         ExternalId = @event.ExternalId;
         FlowId = @event.FlowId;
         Name = @event.Name;

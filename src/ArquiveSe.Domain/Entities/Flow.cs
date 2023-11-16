@@ -6,15 +6,17 @@ namespace ArquiveSe.Domain.Entities;
 
 public class Flow : AggregateRoot
 {
+    public string AccountId { get; private set; } = null!;
     public string Name { get; private set; } = null!;
     public string Description { get; private set; } = null!;
     public Permissions Permissions { get; private set; } = Permissions.Empty;
 
     public Flow()
-    {            
+    {
     }
 
     public Flow(
+        string accountId,
         string externalId,
         string name,
         string description,
@@ -23,6 +25,7 @@ public class Flow : AggregateRoot
         var @event = new FlowCreated
         (
             Id,
+            accountId,
             externalId,
             name,
             description,
@@ -35,6 +38,7 @@ public class Flow : AggregateRoot
     protected void OnFlowCreated(FlowCreated @event)
     {
         Id = @event.AggregateId;
+        AccountId = @event.AccountId;
         ExternalId = @event.ExternalId;
         Name = @event.Name;
         Description = @event.Description;

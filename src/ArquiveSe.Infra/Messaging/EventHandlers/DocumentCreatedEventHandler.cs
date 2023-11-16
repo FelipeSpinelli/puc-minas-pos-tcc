@@ -25,8 +25,8 @@ public class DocumentCreatedEventHandler : INotificationHandler<DocumentCreated>
         var folder = await _folderReadDbPort.GetFolderById(notification.FolderId);
         var documentProjection = new DocumentProjection
         {
-            Id = notification.Id,
-            ExternalId = notification.ExternalId,
+            Id = notification.ExternalId,
+            AccountId = notification.AccountId,
             FolderId = folder.Id,
             Name = notification.Name,
             Folder = new FolderSummaryDto

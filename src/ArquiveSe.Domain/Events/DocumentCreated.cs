@@ -7,6 +7,7 @@ using MediatR;
 namespace ArquiveSe.Domain.Events;
 public record DocumentCreated : Event, INotification
 {
+    public string AccountId { get; set; } = null!;
     public string ExternalId { get; set; } = null!;
     public string FolderId { get; set; } = null!;
     public string Name { get; set; } = null!;
@@ -20,6 +21,7 @@ public record DocumentCreated : Event, INotification
 
     public DocumentCreated(
         string documentId,
+        string accountId,
         string externalId,
         string folderId,
         string name,
@@ -28,6 +30,7 @@ public record DocumentCreated : Event, INotification
         ulong expectedSize) : base(typeof(Folder).FullName!, documentId)
     {
         ExternalId = externalId;
+        AccountId = accountId;
         FolderId = folderId;
         Name = name;
         Type = type;
