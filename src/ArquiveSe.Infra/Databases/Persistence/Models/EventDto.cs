@@ -13,22 +13,22 @@ public class EventDto
     public string Data { get; set; } = string.Empty;
 
     public EventDto()
-    {            
+    {
     }
 
     public EventDto(Event @event)
     {
         Id = @event.Id;
-        EventType = typeof(Event).FullName ?? typeof(Event).Name;
+        EventType = @event.EventType;
         AggregateType = @event.AggregateType;
         AggregateId = @event.AggregateId;
         Timestamp = @event.Timestamp;
-        Data = JsonSerializer.Serialize(@event);
+        Data = @event.GetData();
     }
 
     public Event GetEvent()
     {
-        var eventType = Type.GetType(EventType)!;
+        var eventType = typeof(Event).Assembly.GetType(EventType)!;
         return (Event)JsonSerializer.Deserialize(Data, eventType)!;
     }
 }

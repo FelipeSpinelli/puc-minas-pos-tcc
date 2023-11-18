@@ -1,10 +1,12 @@
 ﻿using ArquiveSe.Domain.Entities;
 using ArquiveSe.Domain.Shared;
 using ArquiveSe.Domain.ValueObjects;
+using MediatR;
+using System.Text.Json;
 
 namespace ArquiveSe.Domain.Events;
 
-public record FolderCreated : Event
+public record FolderCreated : Event, INotification
 {
     public string AccountId { get; set; } = null!;
     public string ExternalId { get; set; } = null!;
@@ -36,4 +38,6 @@ public record FolderCreated : Event
         Permissions = permissions;
         ParentFolder = parentFolder;
     }
+
+    public override string GetData() => JsonSerializer.Serialize(this);
 }

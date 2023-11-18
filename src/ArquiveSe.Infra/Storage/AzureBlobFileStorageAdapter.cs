@@ -17,10 +17,16 @@ public class AzureBlobFileStorageAdapter : IFileStoragePort
 
     public async Task<byte[]> Load(Document document)
     {
-        var content = await _blobServiceClient
+        var blobClient = _blobServiceClient
             .GetBlobContainerClient(BLOB_CONTAINER_NAME)
-            .GetBlobClient(BuildIdFromDocument(document))
-            .DownloadStreamingAsync();
+            .GetBlobClient(BuildIdFromDocument(document));
+
+        if (!await blobClient.ExistsAsync())
+        {
+            return Array.Empty<byte>();
+        }
+
+        var content = await blobClient.DownloadStreamingAsync();
 
         using var ms = new MemoryStream();
         content.Value.Content.CopyTo(ms);
@@ -31,6 +37,14 @@ public class AzureBlobFileStorageAdapter : IFileStoragePort
     {
         using var ms = new MemoryStream();
         ms.Write(stream, 0, stream.Length);
+        ms.Position = 0;
+
+        var blobClient = _blobServiceClient
+            .GetBlobContainerClient(BLOB_CONTAINER_NAME)
+            .GetBlobClient(BuildIdFromDocument(document));
+
+        await blobClient.DeleteIfExistsAsync();
+
         await _blobServiceClient
             .GetBlobContainerClient(BLOB_CONTAINER_NAME)
             .UploadBlobAsync(BuildIdFromDocument(document), ms);

@@ -10,7 +10,7 @@ public class PersistenceDbAdapter : IPersistenceDbPort
 {
     private readonly PersistenceDbContext _db;
     private readonly IEventPublisherPort _eventPublisher;
-    private readonly List<Event> _events = new();
+    private readonly Queue<Event> _events = new();
 
     public PersistenceDbAdapter(PersistenceDbContext db, IEventPublisherPort eventPublisher)
     {
@@ -20,7 +20,7 @@ public class PersistenceDbAdapter : IPersistenceDbPort
 
     public async Task AddEvent(Event @event)
     {
-        _events.Add(@event);
+        _events.Enqueue(@event);
         await _db.Events.AddAsync(new EventDto(@event));
     }
 
@@ -46,9 +46,9 @@ public class PersistenceDbAdapter : IPersistenceDbPort
     {
         await _db.SaveChangesAsync();
 
-        foreach (var @event in _events)
+        while(_events.TryDequeue(out var @event))
         {
             await _eventPublisher.Publish(@event);
-        };
+        }
     }
 }

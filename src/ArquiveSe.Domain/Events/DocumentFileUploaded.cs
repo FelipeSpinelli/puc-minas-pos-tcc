@@ -1,9 +1,11 @@
 ﻿using ArquiveSe.Domain.Entities;
 using ArquiveSe.Domain.Shared;
+using MediatR;
+using System.Text.Json;
 
 namespace ArquiveSe.Domain.Events;
 
-public record DocumentFileUploaded : Event
+public record DocumentFileUploaded : Event, INotification
 {
     public DocumentFileUploaded() 
         : base(typeof(Document).FullName!, string.Empty)
@@ -14,4 +16,6 @@ public record DocumentFileUploaded : Event
         : base(typeof(Document).FullName!, documentId)
     {
     }
+
+    public override string GetData() => JsonSerializer.Serialize(this);
 }

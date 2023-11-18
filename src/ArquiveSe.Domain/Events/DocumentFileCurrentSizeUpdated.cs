@@ -1,9 +1,11 @@
 ﻿using ArquiveSe.Domain.Entities;
 using ArquiveSe.Domain.Shared;
+using MediatR;
+using System.Text.Json;
 
 namespace ArquiveSe.Domain.Events;
 
-public record DocumentFileCurrentSizeUpdated : Event
+public record DocumentFileCurrentSizeUpdated : Event, INotification
 {
     public ulong SizeToAdd { get; set; }
 
@@ -17,4 +19,6 @@ public record DocumentFileCurrentSizeUpdated : Event
     {
         SizeToAdd = sizeToAdd;
     }
+
+    public override string GetData() => JsonSerializer.Serialize(this);
 }

@@ -20,23 +20,21 @@ public class OperationLockerAdapter : IOperationLockerPort
         const int WAIT_IN_MILLISECONDS = 200;
 
         var sw = Stopwatch.StartNew();
-        _mutex.WaitOne();
         bool wasAlreadyCached;
 
         do
         {
-            if (sw.ElapsedMilliseconds * 1000 >= TIMEOUT_IN_SECONDS)
+            if (sw.Elapsed.TotalSeconds >= TIMEOUT_IN_SECONDS)
             {
-                _mutex.ReleaseMutex();
-                return false;
+                wasAlreadyCached = true;
+                break;
             }
 
             (wasAlreadyCached, _) = await GetOrAddFromCache(key);
             await Task.Delay(!wasAlreadyCached ? WAIT_IN_MILLISECONDS : 0);
         }
-        while (!wasAlreadyCached);
+        while (wasAlreadyCached);
         
-        _mutex.ReleaseMutex();
         return !wasAlreadyCached;
     }
 
@@ -44,9 +42,11 @@ public class OperationLockerAdapter : IOperationLockerPort
 
     private async Task<(bool WasAlreadyCached, string Value)> GetOrAddFromCache(string key)
     {
+        _mutex.WaitOne();
         var value = await _cache.GetStringAsync(key);
         if (!string.IsNullOrEmpty(value))
         {
+            _mutex.ReleaseMutex();
             return (true, value);
         }
 
@@ -55,6 +55,7 @@ public class OperationLockerAdapter : IOperationLockerPort
             Guid.NewGuid().ToString(), 
             new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1)}
         );
+        _mutex.ReleaseMutex();
         return (false, value);
     }
 }

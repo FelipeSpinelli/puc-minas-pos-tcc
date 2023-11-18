@@ -3,6 +3,7 @@ using ArquiveSe.Domain.Enumerators;
 using ArquiveSe.Domain.Shared;
 using ArquiveSe.Domain.ValueObjects;
 using MediatR;
+using System.Text.Json;
 
 namespace ArquiveSe.Domain.Events;
 public record DocumentCreated : Event, INotification
@@ -27,7 +28,7 @@ public record DocumentCreated : Event, INotification
         string name,
         EDocumentType type,
         Permissions permissions,
-        ulong expectedSize) : base(typeof(Folder).FullName!, documentId)
+        ulong expectedSize) : base(typeof(Document).FullName!, documentId)
     {
         ExternalId = externalId;
         AccountId = accountId;
@@ -37,4 +38,6 @@ public record DocumentCreated : Event, INotification
         Permissions = permissions;
         ExpectedSize = expectedSize;
     }
+
+    public override string GetData() => JsonSerializer.Serialize(this);
 }
