@@ -10,8 +10,8 @@ public class CreateDocumentRequest :
     public string FolderId { get; set; } = null!;
     public string Name { get; set; } = null!;
     public string Type { get; set; } = null!;
-    public string[] Approvers { get; set; } = Array.Empty<string>();
-    public string[] Reviewers { get; set; } = Array.Empty<string>();
+    public string Approvers { get; set; } = null!;
+    public string Reviewers { get; set; } = null!;
     public bool InheritFolderPermissions { get; set; }
     public IFormFile? File { get; set; }
 
@@ -27,8 +27,8 @@ public class CreateDocumentRequest :
             ExpectedSize = (ulong)File!.Length,
             CustomPermissions = new PermissionsDto
             {
-                Approvers = Approvers,
-                Reviewers = Reviewers
+                Approvers = (Approvers ?? string.Empty).Split(','),
+                Reviewers = (Reviewers ?? string.Empty).Split(',')
             }
         };
     }

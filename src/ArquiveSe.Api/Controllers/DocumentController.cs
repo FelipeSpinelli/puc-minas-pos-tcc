@@ -4,7 +4,6 @@ using ArquiveSe.Application.Models.Commands.Inputs;
 using ArquiveSe.Application.Models.Commands.Outputs;
 using ArquiveSe.Application.Ports.Driving;
 using ArquiveSe.Application.UseCases.Abstractions;
-using HybridModelBinding;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArquiveSe.Api.Controllers;

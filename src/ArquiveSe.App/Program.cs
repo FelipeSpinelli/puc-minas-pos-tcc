@@ -1,15 +1,16 @@
-using ArquiveSe.App;
 using ArquiveSe.App.Services;
-using MudBlazor.Services;
+using ArquiveSe.App.Services.Abstractions;
+using RestEase.HttpClientFactory;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddMudServices();
-builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(AppSettings.SECTION));
-builder.Services.AddServices(builder.Configuration);
+builder.Services
+    .AddRestEaseClient<IArquiveSeApi>(builder.Configuration.GetValue<string>("ApiBaseAddress"))
+    .SetHandlerLifetime(TimeSpan.FromMinutes(2));
+builder.Services.AddSingleton<IArquiveSeApiService, ArquiveSeApiService>();
 
 var app = builder.Build();
 

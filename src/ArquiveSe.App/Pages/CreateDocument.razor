@@ -1,0 +1,99 @@
+﻿@page "/create-document"
+@using ArquiveSe.App.Models.Requests;
+@using ArquiveSe.App.Services.Abstractions;
+@inject IArquiveSeApiService ArquiveSeService
+<h3>Create Document</h3>
+
+<p>
+    <label>
+        Upload up to @maxAllowedFiles of up to @maxFileSize bytes:
+
+    </label>
+</p>
+
+<div class="container px-5 my-5">
+    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+        <div class="form-floating mb-3">
+            <select class="form-select" id="folderId" aria-label="Pasta" @bind="_request.FolderId">
+                <option value="6f99a3ca628c413090be0ef6840bdfc5">Padrão</option>
+            </select>
+            <label for="folderId">Pasta</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="name" type="text" placeholder="Nome" @bind="_request.Name" />
+            <label for="name">Nome</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select class="form-select" id="type" aria-label="Tipo" @bind="_request.Type">
+                <option value="Doc">Doc</option>
+                <option value="Xls">Xls</option>
+                <option value="Pdf">Pdf</option>
+                <option value="Ppt">Ppt</option>
+            </select>
+            <label for="type">Tipo</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="reviewers" type="text" placeholder="Revisores (Separados por vírgula)" @bind="_request.Reviewers" />
+            <label for="reviewers">Revisores (Separados por vírgula)</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="approvers" type="text" placeholder="Aprovadores (Separados por vírgula)" @bind="_request.Approvers" />
+            <label for="approvers">Aprovadores (Separados por vírgula)</label>
+        </div>
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" id="inheritFolderPermissions" type="checkbox" name="herdarPermissoesDaPasta" @bind="_request.InheritFolderPermissions" />
+                <label class="form-check-label" for="inheritFolderPermissions">Herdar permissões da pasta</label>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <InputFile OnChange="@LoadFile" class="form-control" id="file" placeholder="Arquivo" />
+            <label for="file">Arquivo</label>
+        </div>
+        <div class="d-grid">
+            <button class="btn btn-primary btn-lg" id="submitButton" type="button" @onclick="Create">Criar</button>
+        </div>
+    </form>
+</div>
+
+@if (isLoading)
+{
+    <p>Uploading...</p>
+}
+else if (_request.File is not null)
+{
+    <ul>
+        <li>
+            <ul>
+                <li>Name: @_request.File!.Name</li>
+                <li>Last modified: @_request.File!.LastModified.ToString()</li>
+                <li>Size (bytes): @_request.File!.Size</li>
+                <li>Content type: @_request.File!.ContentType</li>
+            </ul>
+        </li>
+    </ul>
+}
+
+@code {
+    private readonly CreateDocumentRequest _request = new()
+    {
+        FolderId = "6f99a3ca628c413090be0ef6840bdfc5",
+        Type = "Doc"        
+    };
+    private long maxFileSize = (long)Math.Pow(1024, 2) * 15;
+    private int maxAllowedFiles = 1;
+    private bool isLoading;
+
+    private void LoadFile(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        _request.File = e.GetMultipleFiles(maxAllowedFiles).Single();
+
+        isLoading = false;
+    }
+
+    private async Task Create()
+    {
+        await ArquiveSeService.CreateDocument(_request);
+    }
+}
