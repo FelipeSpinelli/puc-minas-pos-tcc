@@ -3,7 +3,6 @@ using ArquiveSe.Domain.Entities;
 using Azure.Storage.Blobs;
 
 namespace ArquiveSe.Infra.Storage;
-
 public class AzureBlobFileStorageAdapter : IFileStoragePort
 {
     private const string BLOB_CONTAINER_NAME = "managed-files";
@@ -19,7 +18,7 @@ public class AzureBlobFileStorageAdapter : IFileStoragePort
     {
         var blobClient = _blobServiceClient
             .GetBlobContainerClient(BLOB_CONTAINER_NAME)
-            .GetBlobClient(BuildIdFromDocument(document));
+            .GetBlobClient(document.BuildIdFromDocument());
 
         if (!await blobClient.ExistsAsync())
         {
@@ -35,20 +34,19 @@ public class AzureBlobFileStorageAdapter : IFileStoragePort
 
     public async Task Save(Document document, byte[] stream)
     {
+        var id = document.BuildIdFromDocument();
         using var ms = new MemoryStream();
         ms.Write(stream, 0, stream.Length);
         ms.Position = 0;
 
         var blobClient = _blobServiceClient
             .GetBlobContainerClient(BLOB_CONTAINER_NAME)
-            .GetBlobClient(BuildIdFromDocument(document));
+            .GetBlobClient(id);
 
         await blobClient.DeleteIfExistsAsync();
 
         await _blobServiceClient
             .GetBlobContainerClient(BLOB_CONTAINER_NAME)
-            .UploadBlobAsync(BuildIdFromDocument(document), ms);
+            .UploadBlobAsync(id, ms);
     }
-
-    private static string BuildIdFromDocument(Document document) => $"{document.Id}.{document.Type}";
 }

@@ -1,9 +1,10 @@
 ﻿using ArquiveSe.Application.Ports.Driven;
 using ArquiveSe.Infra.Databases.Read;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace ArquiveSe.Infra.Databases.Read.Configurations;
 
 public static class ReadDbPortsExtensions
 {

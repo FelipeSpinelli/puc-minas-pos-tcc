@@ -5,7 +5,7 @@ using ArquiveSe.Domain.Enumerators;
 using ArquiveSe.Domain.Events;
 using MediatR;
 
-namespace ArquiveSe.Infra.Messaging.EventHandlers;
+namespace ArquiveSe.Infra.Messaging.Events.EventHandlers;
 
 public class DocumentCreatedEventHandler : INotificationHandler<DocumentCreated>
 {
@@ -13,7 +13,7 @@ public class DocumentCreatedEventHandler : INotificationHandler<DocumentCreated>
     private readonly IFolderReadDbPort _folderReadDbPort;
 
     public DocumentCreatedEventHandler(
-        IDocumentReadDbPort documentReadDbPort, 
+        IDocumentReadDbPort documentReadDbPort,
         IFolderReadDbPort folderReadDbPort)
     {
         _documentReadDbPort = documentReadDbPort;

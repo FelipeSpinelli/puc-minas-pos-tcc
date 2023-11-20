@@ -1,10 +1,10 @@
 ﻿using ArquiveSe.Application.Ports.Driven;
 using ArquiveSe.Infra.Databases.Persistence;
-using ArquiveSe.Infra.Databases.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace ArquiveSe.Infra.Databases.Persistence.Configurations;
 
 public static class PersistenceDbPortExtensions
 {

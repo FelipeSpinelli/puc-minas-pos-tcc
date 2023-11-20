@@ -1,3 +1,9 @@
+using ArquiveSe.Infra.Cache.Configurations;
+using ArquiveSe.Infra.Databases.Persistence.Configurations;
+using ArquiveSe.Infra.Databases.Read.Configurations;
+using ArquiveSe.Infra.Messaging.Configurations;
+using ArquiveSe.Infra.Storage.Configurations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

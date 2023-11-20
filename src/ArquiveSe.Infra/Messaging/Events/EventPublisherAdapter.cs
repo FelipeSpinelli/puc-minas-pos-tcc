@@ -2,7 +2,7 @@
 using ArquiveSe.Domain.Shared;
 using MediatR;
 
-namespace ArquiveSe.Infra.Messaging;
+namespace ArquiveSe.Infra.Messaging.Events;
 
 public class EventPublisherAdapter : IEventPublisherPort
 {

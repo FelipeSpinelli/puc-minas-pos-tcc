@@ -1,8 +1,9 @@
 ﻿using ArquiveSe.Application.Ports.Driven;
 using ArquiveSe.Infra.Cache;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace ArquiveSe.Infra.Cache.Configurations;
 
 public static class CacheExtensions
 {
