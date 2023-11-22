@@ -27,6 +27,7 @@ public class Document : AggregateRoot
         string name,
         EDocumentType type,
         Permissions permissions,
+        ulong chunks,
         ulong expectedSize) : base(externalId)
     {
         var @event = new DocumentCreated
@@ -38,6 +39,7 @@ public class Document : AggregateRoot
             name,
             type,
             permissions!,
+            chunks,
             expectedSize
         );
 
@@ -45,11 +47,17 @@ public class Document : AggregateRoot
         RaiseEvent(@event);
     }
 
-    public void UpdateFileCurrentSize(ulong sizeToAdd)
+    public void UpdateFile(ulong chunkPosition, ulong sizeToAdd)
     {
-        var currentSizeUpdatedEvent = new DocumentFileCurrentSizeUpdated
+        if (!CanApplyChunk(chunkPosition))
+        {
+            throw new ApplicationException($"Unexpected chunk position {chunkPosition}");
+        }
+
+        var currentSizeUpdatedEvent = new DocumentFileUpdated
         (
             Id,
+            chunkPosition,
             sizeToAdd
         );
 
@@ -65,6 +73,8 @@ public class Document : AggregateRoot
         ApplyEvent(documentFileUploadedEvent);
         RaiseEvent(documentFileUploadedEvent);
     }
+
+    public bool CanApplyChunk(ulong chunkPosition) => (long)chunkPosition == File!.CurrentChunks;
 
     public void AddReview(Review review)
     {
@@ -86,14 +96,15 @@ public class Document : AggregateRoot
         Name = @event.Name;
         Type = @event.Type;
         Permissions = @event.Permissions;
-        File = new() { ExpectedSize = @event.ExpectedSize };
+        File = new() { CurrentChunks = 0, ExpectedChunks = @event.Chunks, ExpectedSize = @event.ExpectedSize };
         Status = EDocumentStatus.Created;
     }
 
-    protected void OnDocumentFileCurrentSizeUpdated(DocumentFileCurrentSizeUpdated @event)
+    protected void OnDocumentFileUpdated(DocumentFileUpdated @event)
     {
         File = File with
         {
+            CurrentChunks = File.CurrentChunks + 1,
             CurrentSize = File.CurrentSize + @event.SizeToAdd
         };
     }

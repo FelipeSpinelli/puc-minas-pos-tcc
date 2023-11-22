@@ -1,5 +1,4 @@
 ﻿using ArquiveSe.Application.Ports.Driven;
-using ArquiveSe.Infra.Storage;
 using Azure.Storage.Blobs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

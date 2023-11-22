@@ -4,6 +4,7 @@ namespace ArquiveSe.Application.Ports.Driven;
 
 public interface IFileStoragePort
 {
-    Task Save(Document document, byte[] stream);
+    Task SaveChunk(Document document, int position, byte[] stream);
+    Task JoinChunks(Document document);
     Task<byte[]> Load(Document document);
 }

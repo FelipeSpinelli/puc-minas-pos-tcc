@@ -5,18 +5,21 @@ using System.Text.Json;
 
 namespace ArquiveSe.Domain.Events;
 
-public record DocumentFileCurrentSizeUpdated : Event, INotification
+public record DocumentFileUpdated : Event, INotification
 {
+    public ulong ChunkPosition { get; set; }
     public ulong SizeToAdd { get; set; }
 
-    public DocumentFileCurrentSizeUpdated() : base(typeof(Document).FullName!, string.Empty)
+    public DocumentFileUpdated() : base(typeof(Document).FullName!, string.Empty)
     {
     }
 
-    public DocumentFileCurrentSizeUpdated(
+    public DocumentFileUpdated(
         string documentId,
+        ulong chunkPosition,
         ulong sizeToAdd) : base(typeof(Document).FullName!, documentId)
     {
+        ChunkPosition = chunkPosition;
         SizeToAdd = sizeToAdd;
     }
 

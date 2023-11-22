@@ -12,5 +12,6 @@ public record CreateDocumentInput : IRequest<CreateDocumentOutput>
     public string Type { get; set; } = null!;
     public PermissionsDto? CustomPermissions { get; set; }
     public bool InheritFolderPermissions { get; set; }
+    public ulong Chunks { get; set; }
     public ulong ExpectedSize { get; set; }
 }

@@ -36,6 +36,7 @@ public class CreateDocumentUseCase : BaseCommandUseCase<CreateDocumentInput, Cre
             input.Name,
             (EDocumentType)Enum.Parse(typeof(EDocumentType), input.Type),
             new Permissions(permissions.Reviewers, permissions.Approvers),
+            input.Chunks,
             input.ExpectedSize
         );
 

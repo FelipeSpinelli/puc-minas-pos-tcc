@@ -1,5 +1,4 @@
 ﻿using ArquiveSe.Application.Ports.Driven;
-using ArquiveSe.Infra.Databases.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

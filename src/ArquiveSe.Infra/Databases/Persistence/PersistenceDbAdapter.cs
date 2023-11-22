@@ -30,6 +30,7 @@ public class PersistenceDbAdapter : IPersistenceDbPort
         var aggregateType = typeof(T);
         var aggregateEvents = await _db.Events
             .Where(x => x.AggregateId == aggregateId)
+            .OrderBy(x => x.Timestamp)
             .ToListAsync();
 
         var aggregate = (T)Activator.CreateInstance(aggregateType)!;
@@ -46,7 +47,7 @@ public class PersistenceDbAdapter : IPersistenceDbPort
     {
         await _db.SaveChangesAsync();
 
-        while(_events.TryDequeue(out var @event))
+        while (_events.TryDequeue(out var @event))
         {
             await _eventPublisher.Publish(@event);
         }

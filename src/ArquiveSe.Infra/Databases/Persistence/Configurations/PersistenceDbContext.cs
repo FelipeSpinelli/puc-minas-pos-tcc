@@ -37,8 +37,7 @@ public class PersistenceDbContext : DbContext
 
             builder.Property(x => x.Data)
                 .IsRequired()
-                .HasColumnType("VARCHAR(MAX)")
-                .HasConversion(x => Compress(x), x => Decompress(x));
+                .HasColumnType("VARCHAR(MAX)");
         });
     }
 

@@ -14,6 +14,7 @@ public record DocumentCreated : Event, INotification
     public string Name { get; set; } = null!;
     public EDocumentType Type { get; set; }
     public Permissions Permissions { get; set; } = Permissions.Empty;
+    public ulong Chunks { get; set; }
     public ulong ExpectedSize { get; set; }
 
     public DocumentCreated() : base(typeof(Document).FullName!, string.Empty)
@@ -28,6 +29,7 @@ public record DocumentCreated : Event, INotification
         string name,
         EDocumentType type,
         Permissions permissions,
+        ulong chunks,
         ulong expectedSize) : base(typeof(Document).FullName!, documentId)
     {
         ExternalId = externalId;
@@ -36,6 +38,7 @@ public record DocumentCreated : Event, INotification
         Name = name;
         Type = type;
         Permissions = permissions;
+        Chunks = chunks;
         ExpectedSize = expectedSize;
     }
 

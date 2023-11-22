@@ -3,6 +3,7 @@ using ArquiveSe.Application.Ports.Driving;
 using ArquiveSe.Infra.Messaging.Commands;
 using ArquiveSe.Infra.Messaging.Events;
 using Azure.Messaging.ServiceBus;
+using MediatR;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,18 +43,32 @@ public static class MessagingExtensions
                     .GetService<ServiceBusClient>()!
                     .CreateSender(nameof(Commands))
             )
-            .WithName($"{nameof(ICommandBusPort)}Sender");
-            clientsBuilder.AddClient<ServiceBusReceiver, ServiceBusClientOptions>((_, _, provider) =>
-            {
-                var receiver = provider
+            .WithName(DistributedCommandBusAdapter.SENDER_NAME);
+            clientsBuilder.AddClient<ServiceBusProcessor, ServiceBusClientOptions>((_, _, provider) =>
+                provider
                     .GetService<ServiceBusClient>()!
-                    .CreateReceiver(nameof(Commands));
-
-                return receiver;
-            })
-            .WithName($"{nameof(ICommandBusPort)}Receiver");
+                    .CreateProcessor(nameof(Commands)))
+            .WithName(DistributedCommandBusAdapter.PROCESSOR_NAME);
         });
 
-        return services.AddSingleton<ICommandBusPort, DistributedCommandBusAdapter>();
+        return services
+            .AddScoped<ICommandBusPort>(sp =>
+            {
+                _ = sp.GetRequiredService<DistributedCommandBusAdapter>();
+                var serviceBusSenderFactory = sp.GetRequiredService<IAzureClientFactory<ServiceBusSender>>();
+                var mediator = sp.GetRequiredService<IMediator>();
+                var settings = sp.GetRequiredService<MessagingSettings>();
+
+                return new DistributedCommandBusAdapter(serviceBusSenderFactory, mediator, settings);
+            })
+            .AddSingleton(sp =>
+            {
+                var serviceBusSenderFactory = sp.GetRequiredService<IAzureClientFactory<ServiceBusSender>>();
+                var serviceBusProcessorFactory = sp.GetRequiredService<IAzureClientFactory<ServiceBusProcessor>>();
+                var mediator = sp.GetRequiredService<IMediator>();
+                var settings = sp.GetRequiredService<MessagingSettings>();
+
+                return new DistributedCommandBusAdapter(sp, serviceBusSenderFactory, serviceBusProcessorFactory, mediator, settings);
+            });
     }
 }

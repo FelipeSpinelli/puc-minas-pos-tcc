@@ -1,9 +1,11 @@
-﻿using ArquiveSe.Application.Ports.Driving;
+﻿using Amazon.Runtime.Internal.Auth;
+using ArquiveSe.Application.Ports.Driving;
 using ArquiveSe.Infra.Messaging.Configurations;
 using ArquiveSe.Infra.Messaging.Models;
 using Azure.Messaging.ServiceBus;
 using MediatR;
 using Microsoft.Extensions.Azure;
+using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json;
 
 namespace ArquiveSe.Infra.Messaging.Commands;
@@ -11,28 +13,41 @@ namespace ArquiveSe.Infra.Messaging.Commands;
 public class DistributedCommandBusAdapter : CommandBusAdapter, ICommandBusPort
 {
     private readonly ServiceBusSender _sender;
-    private readonly ServiceBusReceiver _receiver;
-    private readonly System.Timers.Timer _timer;
-    private readonly Timer _timer2;
+    private readonly IServiceProvider? _serviceProvider;
+    private readonly ServiceBusProcessor? _processor;
 
+    public const string SENDER_NAME = $"{nameof(Commands)}Sender";
+    public const string PROCESSOR_NAME = $"{nameof(Commands)}Processor";
+
+    public DistributedCommandBusAdapter(
+        IServiceProvider serviceProvider,
+        IAzureClientFactory<ServiceBusSender> serviceBusSenderFactory,
+        IAzureClientFactory<ServiceBusProcessor> serviceBusProcessorFactory,
+        IMediator bus,
+        MessagingSettings settings)
+        : this(serviceBusSenderFactory, bus, settings)
+    {
+        _serviceProvider = serviceProvider;
+        _processor = serviceBusProcessorFactory.CreateClient(PROCESSOR_NAME);
+
+        if (_processor.IsProcessing)
+        {
+            return;
+        }
+
+        _processor.ProcessMessageAsync += MessageHandler;
+        _processor.ProcessErrorAsync += ErrorHandler;
+
+        _processor.StartProcessingAsync().GetAwaiter().GetResult();
+    }
 
     public DistributedCommandBusAdapter(
         IAzureClientFactory<ServiceBusSender> serviceBusSenderFactory,
-        IAzureClientFactory<ServiceBusReceiver> serviceBusReceiverFactory,
         IMediator bus,
         MessagingSettings settings)
         : base(bus, settings)
     {
-        _sender = serviceBusSenderFactory.CreateClient(nameof(Commands));
-        _receiver = serviceBusReceiverFactory.CreateClient(nameof(Commands));
-        _timer = new System.Timers.Timer(200)
-        {
-            AutoReset = true,
-            Enabled = true
-        };
-        _timer.Elapsed += OnTimerElapsed;
-
-        _tim
+        _sender = serviceBusSenderFactory.CreateClient(SENDER_NAME);
     }
 
     public override Task Send<T>(T message)
@@ -43,8 +58,30 @@ public class DistributedCommandBusAdapter : CommandBusAdapter, ICommandBusPort
         return _sender.SendMessageAsync(busMessage);
     }
 
-    private void OnTimerElapsed(object? sender, System.Timers.ElapsedEventArgs e)
+    private async Task MessageHandler(ProcessMessageEventArgs args)
     {
-        throw new NotImplementedException();
+        try
+        {
+            using var scope = _serviceProvider!.CreateScope();
+            var bus = scope.ServiceProvider.GetRequiredService<IMediator>();
+            var body = args.Message.Body.ToString();
+            var queueCommand = JsonSerializer.Deserialize<QueueCommand>(body);
+            await bus.Send(queueCommand!.GetCommand());
+
+            await args.CompleteMessageAsync(args.Message);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    private static Task ErrorHandler(ProcessErrorEventArgs args)
+    {
+        Console.WriteLine(args.ErrorSource);
+        Console.WriteLine(args.FullyQualifiedNamespace);
+        Console.WriteLine(args.EntityPath);
+        Console.WriteLine(args.Exception.ToString());
+        return Task.CompletedTask;
     }
 }

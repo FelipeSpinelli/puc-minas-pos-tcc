@@ -24,6 +24,7 @@ public class CreateDocumentRequest :
             Name = Name,
             Type = Type,
             InheritFolderPermissions = InheritFolderPermissions,
+            Chunks = (ulong)((File!.Length % 4096 == 0 ? 0 : 1) + (File!.Length / 4096)),
             ExpectedSize = (ulong)File!.Length,
             CustomPermissions = new PermissionsDto
             {
@@ -50,7 +51,7 @@ public class CreateDocumentRequest :
 
             chunks.Add(new AddDocumentFileChunkInput
             {
-                Position = position,
+                Position = i,
                 Base64Chunk = Convert.ToBase64String(chunkBytes)
             });
         }
