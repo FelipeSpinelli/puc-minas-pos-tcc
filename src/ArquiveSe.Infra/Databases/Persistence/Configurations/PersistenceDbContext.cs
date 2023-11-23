@@ -1,13 +1,12 @@
 ﻿using ArquiveSe.Infra.Databases.Persistence.Models;
 using Microsoft.EntityFrameworkCore;
-using System.IO.Compression;
-using System.Text;
 
 namespace ArquiveSe.Infra.Databases.Persistence.Configurations;
 
 public class PersistenceDbContext : DbContext
 {
     public DbSet<EventDto> Events { get; set; }
+    public DbSet<IdempotencyDto> Idempotencies { get; set; }
 
     public PersistenceDbContext(DbContextOptions<PersistenceDbContext> options)
         : base(options)
@@ -39,31 +38,22 @@ public class PersistenceDbContext : DbContext
                 .IsRequired()
                 .HasColumnType("VARCHAR(MAX)");
         });
-    }
 
-    private static string Compress(string value)
-    {
-        var bytes = Encoding.UTF8.GetBytes(value);
-
-        using var memoryStream = new MemoryStream();
-        using (var brotliStream = new BrotliStream(memoryStream, CompressionLevel.Optimal))
+        modelBuilder.Entity<IdempotencyDto>(builder =>
         {
-            brotliStream.Write(bytes, 0, bytes.Length);
-        }
+            builder.HasKey(i => i.Id);
 
-        return Encoding.UTF8.GetString(memoryStream.ToArray());
-    }
+            builder.Property(x => x.Id)
+                .IsRequired()
+                .HasMaxLength(300);
 
-    private static string Decompress(string value)
-    {
-        var bytes = Encoding.UTF8.GetBytes(value);
-        using var memoryStream = new MemoryStream(bytes);
-        using var outputStream = new MemoryStream();
-        using (var decompressStream = new BrotliStream(memoryStream, CompressionMode.Decompress))
-        {
-            decompressStream.CopyTo(outputStream);
-        }
+            builder.Property(x => x.ValueType)
+                .IsRequired()
+                .HasMaxLength(200);
 
-        return Encoding.UTF8.GetString(outputStream.ToArray());
+            builder.Property(x => x.Data)                
+                .IsRequired()
+                .HasColumnType("VARCHAR(MAX)");
+        });
     }
 }

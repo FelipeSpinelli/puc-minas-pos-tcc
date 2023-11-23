@@ -13,7 +13,7 @@ public class AddDocumentReviewUseCase : BaseCommandUseCase<AddDocumentReviewInpu
     {
     }
 
-    public override async Task<NoOutput> Execute(AddDocumentReviewInput input)
+    protected override async Task<NoOutput> InternalExecute(AddDocumentReviewInput input)
     {
         var document = await _persistenceDb.LoadAggregate<Document>(input.Id)
             ?? throw new ApplicationException($"Document {input.Id} was not found!");

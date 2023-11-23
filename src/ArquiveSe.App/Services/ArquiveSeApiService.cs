@@ -1,8 +1,6 @@
 ﻿using ArquiveSe.App.Models.Requests;
 using ArquiveSe.App.Services.Abstractions;
 using RestEase;
-using System.Collections.Specialized;
-using System.Net;
 using System.Net.Mime;
 using System.Text;
 

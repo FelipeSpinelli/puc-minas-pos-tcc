@@ -52,4 +52,26 @@ public class PersistenceDbAdapter : IPersistenceDbPort
             await _eventPublisher.Publish(@event);
         }
     }
+
+    public async Task AddIdempotency<T>(string idempotencyKey, T value)
+    {
+        var type = typeof(T);
+        var idempotency = new IdempotencyDto(idempotencyKey, type.FullName ?? type.Name, value!);
+        await _db.Idempotencies.AddAsync(idempotency);
+        await _db.SaveChangesAsync();
+    }
+
+    public async Task<T?> GetByIdempotency<T>(string idempotencyKey)
+    {
+        var idempotency = await _db.Idempotencies
+            .Where(x => x.Key == idempotencyKey)
+            .FirstOrDefaultAsync();
+
+        if (idempotency is null)
+        {
+            return default;
+        }
+
+        return idempotency.GetAs<T>();
+    }
 }

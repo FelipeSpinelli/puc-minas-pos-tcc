@@ -18,7 +18,7 @@ public class JoinDocumentFileChunksUseCase : BaseCommandUseCase<JoinDocumentFile
         _fileStorage = fileStorage;
     }
 
-    public override async Task<NoOutput> Execute(JoinDocumentFileChunksInput input)
+    protected override async Task<NoOutput> InternalExecute(JoinDocumentFileChunksInput input)
     {
         var document = await _persistenceDb.LoadAggregate<Document>(input.Id)
                 ?? throw new ApplicationException($"Document {input.Id} was not found!");

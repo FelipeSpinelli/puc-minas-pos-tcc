@@ -19,7 +19,7 @@ public class CreateDocumentUseCase : BaseCommandUseCase<CreateDocumentInput, Cre
         _folderReadDb = folderReadDb;
     }
 
-    public override async Task<CreateDocumentOutput> Execute(CreateDocumentInput input)
+    protected override async Task<CreateDocumentOutput> InternalExecute(CreateDocumentInput input)
     {
         var folder = await _folderReadDb.GetFolderById(input.FolderId)
             ?? throw new ApplicationException($"Folder {input.FolderId} was not found!");

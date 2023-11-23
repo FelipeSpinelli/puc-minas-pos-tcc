@@ -17,7 +17,7 @@ public class AddDocumentFileChunkUseCase : BaseCommandUseCase<AddDocumentFileChu
         _fileStorage = fileStorage;
     }
 
-    public override async Task<NoOutput> Execute(AddDocumentFileChunkInput input)
+    protected override async Task<NoOutput> InternalExecute(AddDocumentFileChunkInput input)
     {
         Document? document;
 
