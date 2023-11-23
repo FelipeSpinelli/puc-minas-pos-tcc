@@ -1,36 +1,51 @@
-﻿using ArquiveSe.Application.Ports.Driving;
+﻿using Amazon.Runtime.Internal.Util;
+using ArquiveSe.Application.Ports.Driving;
 using ArquiveSe.Infra.Messaging.Configurations;
 using ArquiveSe.Infra.Messaging.Models;
 using Coravel.Invocable;
-using Coravel.Queuing.Interfaces;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace ArquiveSe.Infra.Messaging.Commands;
 
 public class InMemoryCommandBusAdapter :
     CommandBusAdapter,
     ICommandBusPort,
-    IInvocable,
-    IInvocableWithPayload<QueueCommand>
+    IInvocable
 {
-    private readonly IQueue _queue;
+    private readonly ILogger<InMemoryCommandBusAdapter> _logger;
+    private static readonly Queue<QueueCommand> _queue = new();
+    private static bool _running;
+
     public InMemoryCommandBusAdapter(
-        IQueue queue,
         IMediator bus,
-        MessagingSettings settings)
+        MessagingSettings settings,
+        ILogger<InMemoryCommandBusAdapter> logger)
         : base(bus, settings)
     {
-        _queue = queue;
+        _logger = logger;
     }
 
-    public QueueCommand Payload { get; set; } = new();
+    public async Task Invoke()
+    {
+        if (_running)
+        {
+            return;
+        }
 
-    public Task Invoke() => _bus.Send(Payload);
+        _running = true;
+        while (_queue.TryDequeue(out var queueCommand))
+        {
+            _logger.LogInformation($"Sending {queueCommand.CommandType} command\r\n{queueCommand.CommandData}");
+            await _bus.Send(queueCommand.GetCommand());
+        }
+        _running = false;
+    }
 
     public override Task Send<T>(T message)
     {
         var queueCommand = QueueCommand.CreateFrom(message);
-        _queue.QueueInvocableWithPayload<InMemoryCommandBusAdapter, QueueCommand>(queueCommand);
+        _queue.Enqueue(queueCommand);
         return Task.CompletedTask;
     }
 }

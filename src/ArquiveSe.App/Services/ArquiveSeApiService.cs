@@ -1,6 +1,8 @@
 ﻿using ArquiveSe.App.Models.Requests;
 using ArquiveSe.App.Services.Abstractions;
 using RestEase;
+using System.Collections.Specialized;
+using System.Net;
 using System.Net.Mime;
 using System.Text;
 
@@ -21,7 +23,7 @@ internal class ArquiveSeApiService : IArquiveSeApiService
     {
         await SendAndValidate(async () =>
         {
-            using var httpContent = new MultipartFormDataContent
+            using var httpContent = new MultipartFormDataContent($"----------------------------{DateTime.Now.Ticks:x}")
             {
                 { new StringContent(request.FolderId, Encoding.UTF8, MediaTypeNames.Text.Plain), nameof(request.FolderId) },
                 { new StringContent(request.Name, Encoding.UTF8, MediaTypeNames.Text.Plain), nameof(request.Name) },
@@ -33,6 +35,7 @@ internal class ArquiveSeApiService : IArquiveSeApiService
 
             using var ms = new MemoryStream();
             await request.File!.OpenReadStream().CopyToAsync(ms);
+            ms.Position = 0;
             var fileContent = new StreamContent(ms);
             httpContent.Add(fileContent, nameof(request.File), request.File!.Name);
 

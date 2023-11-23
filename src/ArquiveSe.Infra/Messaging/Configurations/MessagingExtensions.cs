@@ -3,7 +3,9 @@ using ArquiveSe.Application.Ports.Driving;
 using ArquiveSe.Infra.Messaging.Commands;
 using ArquiveSe.Infra.Messaging.Events;
 using Azure.Messaging.ServiceBus;
+using Coravel;
 using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +27,7 @@ public static class MessagingExtensions
         if (settings.UseInMemory)
         {
             return services
+                .AddScheduler()
                 .AddScoped<ICommandBusPort, InMemoryCommandBusAdapter>()
                 .AddTransient<InMemoryCommandBusAdapter>();
         }
@@ -70,5 +73,19 @@ public static class MessagingExtensions
 
                 return new DistributedCommandBusAdapter(sp, serviceBusSenderFactory, serviceBusProcessorFactory, mediator, settings);
             });
+    }
+
+    public static IApplicationBuilder UseMessaging(this IApplicationBuilder app)
+    {
+        var servicesProvider = app.ApplicationServices;
+        servicesProvider
+            .UseScheduler(scheduler =>
+            {
+                scheduler
+                    .Schedule<InMemoryCommandBusAdapter>()
+                    .EveryFiveSeconds();
+            });
+
+        return app;
     }
 }

@@ -24,6 +24,8 @@ public static class ApplicationExtensions
             .AddTransient<IRequestHandler<CreateDocumentInput, CreateDocumentOutput>, CreateDocumentUseCase>()
             .AddScoped<IAddDocumentFileChunkUseCase, AddDocumentFileChunkUseCase>()
             .AddTransient<IRequestHandler<AddDocumentFileChunkInput, NoOutput>, AddDocumentFileChunkUseCase>()
+            .AddScoped<IJoinDocumentFileChunksUseCase, JoinDocumentFileChunksUseCase>()
+            .AddTransient<IRequestHandler<JoinDocumentFileChunksInput, NoOutput>, JoinDocumentFileChunksUseCase>()
             .AddScoped<IAddDocumentReviewUseCase, AddDocumentReviewUseCase>()
             .AddTransient<IRequestHandler<AddDocumentReviewInput, NoOutput>, AddDocumentReviewUseCase>()
             .AddScoped<IGetDocumentDetailUseCase, GetDocumentDetailUseCase>()
