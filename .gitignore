@@ -350,3 +350,4 @@ MigrationBackup/
 .ionide/
 /src/ArquiveSe.Api/appsettings.Development.json
 /src/ArquiveSe.App/appsettings.Development.json
+/src/ArquiveSe.Api/Files
