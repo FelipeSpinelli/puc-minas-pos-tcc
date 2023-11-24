@@ -2,47 +2,48 @@
 
 <PageTitle>Lista Mestra</PageTitle>
 
+@using ArquiveSe.App.Models.Responses;
 @using ArquiveSe.App.Services.Abstractions
 @inject IArquiveSeApiService ArquiveSeService
 
-<h1>Weather forecast</h1>
+<h1>Lista Mestra</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
-
-@*@if (forecasts == null)
+@if (!_masterList.Items.Any())
 {
-    <p><em>Loading...</em></p>
+    <h2><i>Carregando...</i></h2>
 }
 else
 {
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Status</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var document in _masterList.Items)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td>@document.Name</td>
+                    <td>@document.Type.ToUpper()</td>
+                    <td>@document.Status</td>
+                    <td><NavLink class="btn btn-primary" role="button" href="@GetDocumentDetailLink(document)">Ver detalhes</NavLink></td>
                 </tr>
             }
         </tbody>
     </table>
 }
-*@
-@code {
-    //private WeatherForecast[]? forecasts;
 
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-    //}
+@code {
+    private GetMasterListResponse _masterList = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _masterList = await ArquiveSeService.GetMasterList();
+    }
+
+    private string GetDocumentDetailLink(GetDocumentByIdResponse document) => $"document-detail/{document.Id}";
 }

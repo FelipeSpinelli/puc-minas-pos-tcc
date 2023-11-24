@@ -2,7 +2,9 @@
 
 namespace ArquiveSe.Api.Contracts.v1.Responses;
 
-public class GetDocumentByIdResponse : IFromOutputConverter<GetDocumentDetailOutput>
+public class GetDocumentByIdResponse : 
+    IFromOutputConverter<GetDocumentDetailOutput>,
+    IFromOutputConverter<GetDocumentStreamOutput>
 {
     public string Id { get; set; } = null!;
     public string Folder { get; set; } = null!;
@@ -10,6 +12,7 @@ public class GetDocumentByIdResponse : IFromOutputConverter<GetDocumentDetailOut
     public string Code { get; set; } = null!;
     public string Type { get; set; } = null!;
     public string Status { get; set; } = null!;
+    public string Base64 { get; set; } = null!;
     public DateTime CreatedAt { get; set; }
 
     public void From(GetDocumentDetailOutput output)
@@ -20,5 +23,10 @@ public class GetDocumentByIdResponse : IFromOutputConverter<GetDocumentDetailOut
         Type = output.Type;
         Status = output.Status;
         CreatedAt = output.CreatedAt;
+    }
+
+    public void From(GetDocumentStreamOutput output)
+    {
+        Base64 = Convert.ToBase64String(output.Stream);
     }
 }

@@ -10,6 +10,8 @@ public class GetMasterListRequest : IToInputConverter<GetMasterListInput>
     {
         input = new GetMasterListInput
         {
+            Page = 1,
+            Size = 150,
             Status = Status
         };
     }

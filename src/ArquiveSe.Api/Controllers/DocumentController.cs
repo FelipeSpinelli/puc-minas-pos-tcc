@@ -2,6 +2,7 @@ using ArquiveSe.Api.Contracts.v1.Requests;
 using ArquiveSe.Api.Contracts.v1.Responses;
 using ArquiveSe.Application.Models.Commands.Inputs;
 using ArquiveSe.Application.Models.Commands.Outputs;
+using ArquiveSe.Application.Models.Queries.Inputs;
 using ArquiveSe.Application.Ports.Driving;
 using ArquiveSe.Application.UseCases.Abstractions;
 using Microsoft.AspNetCore.Mvc;
@@ -14,13 +15,19 @@ public class DocumentController : ControllerBase
 {
     private readonly ICommandBusPort _commandBus;
     private readonly IGetMasterListUseCase _getMasterListUseCase;
+    private readonly IGetDocumentDetailUseCase _getDocumentDetailUseCase;
+    private readonly IGetDocumentStreamUseCase _getDocumentStreamUseCase;
 
     public DocumentController(
         ICommandBusPort commandBus,
-        IGetMasterListUseCase getMasterListUseCase)
+        IGetMasterListUseCase getMasterListUseCase,
+        IGetDocumentDetailUseCase getDocumentDetailUseCase,
+        IGetDocumentStreamUseCase getDocumentStreamUseCase)
     {
         _commandBus = commandBus;
         _getMasterListUseCase = getMasterListUseCase;
+        _getDocumentDetailUseCase = getDocumentDetailUseCase;
+        _getDocumentStreamUseCase = getDocumentStreamUseCase;
     }
 
     [HttpPost(Name = "CreateDocument")]
@@ -48,6 +55,20 @@ public class DocumentController : ControllerBase
         var output = await _getMasterListUseCase.Execute(input);
 
         response.From(output);
+
+        return Ok(response);
+    }
+
+    [HttpGet("{id}", Name = "GetDocumentById")]
+    public async Task<IActionResult> GetDocumentById([FromRoute] string id)
+    {
+        var response = new GetDocumentByIdResponse();
+        var input = new GetDocumentDetailInput { Id = id };
+        var detailOutput = await _getDocumentDetailUseCase.Execute(input);
+        var streamOutput = await _getDocumentStreamUseCase.Execute(input);
+
+        response.From(detailOutput);
+        response.From(streamOutput);
 
         return Ok(response);
     }

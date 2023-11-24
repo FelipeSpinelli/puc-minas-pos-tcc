@@ -1,0 +1,50 @@
+﻿@page "/document-detail/{Id}"
+
+<PageTitle>Detalhes Documento</PageTitle>
+
+@using ArquiveSe.App.Models.Responses
+@using ArquiveSe.App.Services.Abstractions
+@using System.IO
+@inject IArquiveSeApiService ArquiveSeService
+@inject IJSRuntime JS
+
+<h1>Detalhes Documento</h1>
+
+@if (_document is null)
+{
+    <h2><i>Carregando...</i></h2>
+}
+else
+{
+    <h2>@_document.Name</h2>
+    <h3>Detalhes:</h3>
+    <ul>
+        <li><strong>Pasta</strong>:@_document.Folder</li>
+        <li><strong>Status</strong>:@_document.Status</li>
+    </ul>
+    <button type="button" class="btn btn-primary" @onclick=DownloadFileFromStream>Download</button>
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; } = null!;
+
+    private GetDocumentByIdResponse? _document;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _document = await ArquiveSeService.GetDocumentById(Id);
+    }
+    private Stream GetFileStream()
+    {
+        var fileStream = new MemoryStream(Convert.FromBase64String(_document.Base64));
+        return fileStream;
+    }
+
+    private async Task DownloadFileFromStream()
+    {
+        using var streamRef = new DotNetStreamReference(stream: GetFileStream());
+
+        await JS.InvokeVoidAsync("downloadFileFromStream", $"{_document.Name}.{_document.Type}", streamRef);
+    }
+}

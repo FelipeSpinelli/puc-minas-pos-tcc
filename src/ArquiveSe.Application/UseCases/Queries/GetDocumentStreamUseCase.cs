@@ -11,7 +11,9 @@ public class GetDocumentStreamUseCase : IGetDocumentStreamUseCase
     private readonly IPersistenceDbPort _persistenceDbPort;
     private readonly IFileStoragePort _fileStoragePort;
 
-    public GetDocumentStreamUseCase(IPersistenceDbPort persistenceDbPort, IFileStoragePort fileStoragePort)
+    public GetDocumentStreamUseCase(
+        IPersistenceDbPort persistenceDbPort, 
+        IFileStoragePort fileStoragePort)
     {
         _persistenceDbPort = persistenceDbPort;
         _fileStoragePort = fileStoragePort;

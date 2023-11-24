@@ -1,4 +1,5 @@
 ﻿using ArquiveSe.App.Models.Requests;
+using ArquiveSe.App.Models.Responses;
 using ArquiveSe.App.Services.Abstractions;
 using RestEase;
 using System.Net.Mime;
@@ -41,6 +42,20 @@ internal class ArquiveSeApiService : IArquiveSeApiService
 
             return new NoResponse();
         });
+    }
+
+    public async Task<GetMasterListResponse> GetMasterList()
+    {
+        var response = await SendAndValidate<Response<GetMasterListResponse>?>(async () => await _api.GetMasterList());
+
+        return response?.GetContent() ?? new GetMasterListResponse();
+    }
+
+    public async Task<GetDocumentByIdResponse> GetDocumentById(string id)
+    {
+        var response = await SendAndValidate<Response<GetDocumentByIdResponse>?>(async () => await _api.GetDocumentById(id));
+
+        return response?.GetContent() ?? new GetDocumentByIdResponse();
     }
 
     private async Task<T> SendAndValidate<T>(Func<Task<T>> call)
