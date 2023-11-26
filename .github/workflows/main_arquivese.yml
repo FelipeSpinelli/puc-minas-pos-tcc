@@ -43,7 +43,7 @@ jobs:
           name: arquivese-app
           path: ${{env.DOTNET_ROOT}}/app
 
-  deploy:
+  deploy-api:
     runs-on: windows-latest
     needs: build
     environment:
@@ -66,6 +66,14 @@ jobs:
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_245148C421B541A5B3F1FD514766C735 }}
           package: ./api
 
+  deploy-app:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
       - name: Download App artifact
         uses: actions/download-artifact@v3
         with:
