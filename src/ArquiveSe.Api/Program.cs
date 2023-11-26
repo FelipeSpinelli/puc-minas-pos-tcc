@@ -24,7 +24,7 @@ var healthCheckBuilder = builder.Services.AddHealthChecks();
 
 builder.Services.AddPersistenceDb(builder.Configuration, healthCheckBuilder);
 builder.Services.AddReadingDb(builder.Configuration, healthCheckBuilder);
-builder.Services.AddMessaging(builder.Configuration);
+builder.Services.AddMessaging(builder.Configuration, healthCheckBuilder);
 builder.Services.AddStorage(builder.Configuration, healthCheckBuilder);
 builder.Services.AddCache(builder.Configuration);
 builder.Services.AddAuthentication(options =>

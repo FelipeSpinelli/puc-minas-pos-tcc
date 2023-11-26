@@ -1,8 +1,10 @@
 ﻿using ArquiveSe.Application.Ports.Driven;
 using ArquiveSe.Application.Ports.Driving;
+using ArquiveSe.Infra.Databases.Persistence.Configurations;
 using ArquiveSe.Infra.Messaging.Commands;
 using ArquiveSe.Infra.Messaging.Events;
 using Azure.Messaging.ServiceBus;
+using Azure.Storage.Blobs;
 using Coravel;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -13,7 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace ArquiveSe.Infra.Messaging.Configurations;
 public static class MessagingExtensions
 {
-    public static IServiceCollection AddMessaging(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddMessaging(this IServiceCollection services, IConfiguration configuration, IHealthChecksBuilder healthCheckBuilder)
     {
         var settings = configuration.GetSection(MessagingSettings.SECTION_NAME).Get<MessagingSettings>();
         services
@@ -31,6 +33,8 @@ public static class MessagingExtensions
                 .AddScoped<ICommandBusPort, InMemoryCommandBusAdapter>()
                 .AddTransient<InMemoryCommandBusAdapter>();
         }
+
+        healthCheckBuilder.AddAzureServiceBusQueue(configuration.GetConnectionString(settings.ConnectionStringName), nameof(Commands));
 
         services.AddAzureClients(clientsBuilder =>
         {
@@ -78,6 +82,13 @@ public static class MessagingExtensions
     public static IApplicationBuilder UseMessaging(this IApplicationBuilder app)
     {
         var servicesProvider = app.ApplicationServices;
+        var messagingSettings = servicesProvider.GetRequiredService<MessagingSettings>();
+
+        if (!messagingSettings.UseInMemory)
+        {
+            return app;
+        }
+
         servicesProvider
             .UseScheduler(scheduler =>
             {
