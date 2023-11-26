@@ -1,5 +1,4 @@
 ﻿using ArquiveSe.Application.Ports.Driven;
-using ArquiveSe.Infra.Databases.Read;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
@@ -8,8 +7,10 @@ namespace ArquiveSe.Infra.Databases.Read.Configurations;
 
 public static class ReadDbPortsExtensions
 {
-    public static IServiceCollection AddReadingDb(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddReadingDb(this IServiceCollection services, IConfiguration configuration, IHealthChecksBuilder healthCheckBuilder)
     {
+        healthCheckBuilder.AddMongoDb(configuration.GetConnectionString("ReadDb")!, mongoDatabaseName: nameof(ArquiveSe));
+    
         return services
             .AddSingleton<IMongoClient>(sp =>
             {
