@@ -53,6 +53,8 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -71,5 +73,6 @@ app.MapControllers();
 
 app.UseSeeds();
 app.UseMessaging();
+app.MapHealthChecks("/healthz");
 
 app.Run();
