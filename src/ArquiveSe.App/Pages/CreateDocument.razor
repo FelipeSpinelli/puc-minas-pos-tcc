@@ -1,4 +1,6 @@
 ﻿@page "/create-document"
+@attribute [Authorize("documents:create")]
+
 @using ArquiveSe.App.Models.Requests;
 @using ArquiveSe.App.Services.Abstractions;
 @inject IArquiveSeApiService ArquiveSeService

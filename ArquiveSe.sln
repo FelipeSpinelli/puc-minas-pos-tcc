@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArquiveSe.Api", "src\Arquiv
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "X- FrontEnd", "X- FrontEnd", "{59A0AA75-4772-40E4-82DF-F9A89B7E1354}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquiveSe.App", "src\ArquiveSe.App\ArquiveSe.App.csproj", "{89B45FD9-5024-4E57-B58D-7B2BFAA44E8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArquiveSe.App", "src\ArquiveSe.App\ArquiveSe.App.csproj", "{89B45FD9-5024-4E57-B58D-7B2BFAA44E8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

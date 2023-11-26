@@ -1,14 +1,37 @@
 using ArquiveSe.App.Services;
 using ArquiveSe.App.Services.Abstractions;
+using Auth0.AspNetCore.Authentication;
 using RestEase.HttpClientFactory;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAuth0WebAppAuthentication(options => {
+     options.Domain = builder.Configuration["Auth0:Domain"];
+     options.ClientId = builder.Configuration["Auth0:ClientId"];
+ });
+builder.Services.AddAuthorization(options =>
+{
+    new[]
+    {
+        "documents:read",
+        "documents:create",
+        "documents:review",
+        "documents:approve",
+    }
+    .ToList()
+    .ForEach(claim =>
+    {
+        options.AddPolicy(claim, authBuilder =>
+        {
+            authBuilder.RequireClaim(claim);
+        });
+    });
+});
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services
-    .AddRestEaseClient<IArquiveSeApi>(builder.Configuration.GetValue<string>("ApiBaseAddress"))
+    .AddRestEaseClient<IArquiveSeApi>(builder.Configuration["ApiBaseAddress"])
     .SetHandlerLifetime(TimeSpan.FromMinutes(2));
 builder.Services.AddSingleton<IArquiveSeApiService, ArquiveSeApiService>();
 
@@ -27,6 +50,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

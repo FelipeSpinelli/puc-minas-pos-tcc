@@ -2,8 +2,12 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Arquive-Se</h1>
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<AuthorizeView>
+    <NotAuthorized>
+        <div class="alert alert-primary" role="alert">
+            Para ter acesso às funcionalidades é necessário efetuar login! <strong>Clique em "Entrar" no canto superior esquerdo</strong>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
