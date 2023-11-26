@@ -25,14 +25,23 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      - name: Publish API
+        run: dotnet publish src/ArquiveSe.Api/ArquiveSe.Api.csproj -c Release -o ${{env.DOTNET_ROOT}}/api
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          name: arquivese-api
+          path: ${{env.DOTNET_ROOT}}/api
+
+      - name: Publish App
+        run: dotnet publish src/ArquiveSe.App/ArquiveSe.App.csproj -c Release -o ${{env.DOTNET_ROOT}}/app
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: arquivese-app
+          path: ${{env.DOTNET_ROOT}}/app
 
   deploy:
     runs-on: windows-latest
@@ -42,16 +51,32 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download artifact from build job
+      - name: Download API artifact
         uses: actions/download-artifact@v3
         with:
-          name: .net-app
+          name: arquivese-api
+          path: api
 
-      - name: Deploy to Azure Web App
+      - name: Deploy API to Azure
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'arquivese'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_245148C421B541A5B3F1FD514766C735 }}
-          package: .
+          package: ./api
+
+      - name: Download App artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: arquivese-app
+          path: app
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'arquivese-app'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2ABA6238D3304FB98B277735E7018E4F }}
+          package: ./app
