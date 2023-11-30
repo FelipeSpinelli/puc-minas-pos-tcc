@@ -1,11 +1,14 @@
-<mxfile host="app.diagrams.net" modified="2023-10-24T23:54:39.936Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="8crainfVdj72BATzJTOk" version="22.0.6" type="device" pages="5">
+<mxfile host="app.diagrams.net" modified="2023-11-30T03:16:07.958Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="jIYHLh15SeRNuw6QAXZD" version="22.1.5" type="device" pages="5">
   <diagram id="TG_TXNl1M8jXW-oi1JhJ" name="C4 Model - Context">
-    <mxGraphModel dx="1434" dy="758" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1674" dy="808" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="LimpnrA7VbDUIds8i-Sr-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="LimpnrA7VbDUIds8i-Sr-1" target="LimpnrA7VbDUIds8i-Sr-2" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="LimpnrA7VbDUIds8i-Sr-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="120" as="sourcePoint" />
+            <mxPoint x="650" y="310" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="LimpnrA7VbDUIds8i-Sr-15" value="Manages files and users access roles" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="LimpnrA7VbDUIds8i-Sr-5" vertex="1" connectable="0">
           <mxGeometry x="-0.2581" y="-3" relative="1" as="geometry">
@@ -38,7 +41,7 @@
             <mxGeometry x="530" y="300" width="240" height="120" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Files Storage" c4Type="Software System" c4Description="Stores customer files" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="LimpnrA7VbDUIds8i-Sr-3">
+        <object placeholders="1" c4Name="Azure" c4Type="Software System" c4Description="Databases, File Storage and Queues" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="LimpnrA7VbDUIds8i-Sr-3">
           <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
             <mxGeometry x="980" y="300" width="240" height="120" as="geometry" />
           </mxCell>
@@ -52,27 +55,10 @@
     </mxGraphModel>
   </diagram>
   <diagram id="LGe_yTzNYQLzAKkN-p3z" name="C4 Model - Conteiners">
-    <mxGraphModel dx="2261" dy="758" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1969" dy="951" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="2RP8Z6aRjcvruNIcd7D2-19" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="205" y="470" width="785" height="310" as="geometry" />
-        </mxCell>
-        <mxCell id="2RP8Z6aRjcvruNIcd7D2-30" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="215" y="480" width="765" height="140" as="geometry" />
-        </mxCell>
-        <mxCell id="2RP8Z6aRjcvruNIcd7D2-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="2RP8Z6aRjcvruNIcd7D2-19" target="2RP8Z6aRjcvruNIcd7D2-8" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="2RP8Z6aRjcvruNIcd7D2-21" value="Authorizes requests" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="2RP8Z6aRjcvruNIcd7D2-20" vertex="1" connectable="0">
-          <mxGeometry x="-0.1273" y="1" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="2RP8Z6aRjcvruNIcd7D2-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="2RP8Z6aRjcvruNIcd7D2-19" target="2RP8Z6aRjcvruNIcd7D2-18" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <object placeholders="1" c4Name="User" c4Type="Person" c4Description="A person which can manages files" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-1">
           <mxCell style="html=1;fontSize=11;dashed=0;whitespace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" parent="1" vertex="1">
             <mxGeometry x="94" y="30" width="200" height="180" as="geometry" />
@@ -88,10 +74,7 @@
             <mxGeometry x="74" y="280" width="240" height="160" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="2RP8Z6aRjcvruNIcd7D2-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2RP8Z6aRjcvruNIcd7D2-4" target="2RP8Z6aRjcvruNIcd7D2-19" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <object placeholders="1" c4Name="API Gateway" c4Type="Container" c4Technology="Azure API Management" c4Description="Manages Serverless functions routing" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-4">
+        <object placeholders="1" c4Name="ArquiveSe API" c4Type="Container" c4Technology="Azure App Service" c4Description="Provides commmands &amp; queries API" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-4">
           <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
             <mxGeometry x="477.5" y="300" width="240" height="120" as="geometry" />
           </mxCell>
@@ -104,20 +87,9 @@
             </mxGeometry>
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Azure Active Directory" c4Type="Software System" c4Description="Identity and Access Management" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-8">
+        <object placeholders="1" c4Name="Auth0" c4Type="Software System" c4Description="Identity and Access Management" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-8">
           <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
-            <mxGeometry x="-310" y="270" width="240" height="120" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Type="Relationship" c4Description="Authenticates themselves" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-10">
-          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.75;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="2RP8Z6aRjcvruNIcd7D2-1" target="2RP8Z6aRjcvruNIcd7D2-8" edge="1">
-            <mxGeometry width="240" relative="1" as="geometry">
-              <mxPoint x="290" y="380" as="sourcePoint" />
-              <mxPoint x="530" y="380" as="targetPoint" />
-              <Array as="points">
-                <mxPoint x="-190" y="175" />
-              </Array>
-            </mxGeometry>
+            <mxGeometry x="390" y="60" width="240" height="120" as="geometry" />
           </mxCell>
         </object>
         <object placeholders="1" c4Type="Relationship" c4Description="Uses" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-11">
@@ -128,72 +100,31 @@
             </mxGeometry>
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Get file data by Id" c4Type="Container" c4Technology="Azure Function" c4Description="Reads file data using its id as a filter" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-12">
-          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
-            <mxGeometry x="225" y="630" width="240" height="120" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Name="Download file stream by Id" c4Type="Container" c4Technology="Azure Function" c4Description="Retrieves file stream using its Id as filter" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-13">
-          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
-            <mxGeometry x="477.5" y="490" width="240" height="120" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Name="Upload file" c4Type="Container" c4Technology="Azure Function" c4Description="Uploads a new file to users storage account" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-14">
-          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
-            <mxGeometry x="225" y="490" width="240" height="120" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Type="Banco de dados" c4Container="Database" c4Technology="Azure CosmosDB" c4Description="No-SQL Database" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Type%&lt;/font&gt;&lt;div&gt;[%c4Container%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-18">
+        <object placeholders="1" c4Type="Reading Database" c4Container="Database" c4Technology="Azure CosmosDB for MongoDb" c4Description="No-SQL Database" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Type%&lt;/font&gt;&lt;div&gt;[%c4Container%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-18">
           <mxCell style="shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" parent="1" vertex="1">
-            <mxGeometry x="477.5" y="810" width="240" height="120" as="geometry" />
+            <mxGeometry x="740" y="430" width="240" height="120" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Search files" c4Type="Container" c4Technology="Azure Function" c4Description="Searches files which attends request filters" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-23">
-          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
-            <mxGeometry x="480" y="630" width="240" height="120" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Name="Share file" c4Type="Container" c4Technology="Azure Function" c4Description="Creates a temporary link allowing file sharing" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-27">
-          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
-            <mxGeometry x="730" y="490" width="240" height="120" as="geometry" />
-          </mxCell>
-        </object>
-        <mxCell id="2RP8Z6aRjcvruNIcd7D2-28" value="Azure Functions" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="205" y="750" width="155" height="30" as="geometry" />
-        </mxCell>
         <object placeholders="1" c4Name="Azure Blob Storage" c4Type="Software System" c4Description="File Storage Management" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-31">
           <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
             <mxGeometry x="760" y="100" width="240" height="120" as="geometry" />
           </mxCell>
         </object>
         <object placeholders="1" c4Type="Relationship" id="2RP8Z6aRjcvruNIcd7D2-33">
-          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="2RP8Z6aRjcvruNIcd7D2-30" target="2RP8Z6aRjcvruNIcd7D2-31" edge="1">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="2RP8Z6aRjcvruNIcd7D2-4" target="2RP8Z6aRjcvruNIcd7D2-31" edge="1">
             <mxGeometry width="240" relative="1" as="geometry">
-              <mxPoint x="830" y="390" as="sourcePoint" />
+              <mxPoint x="788.75" y="480" as="sourcePoint" />
               <mxPoint x="1070" y="390" as="targetPoint" />
             </mxGeometry>
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Synchronizer Client" c4Type="Person" c4Description="On-premise service which will sends Arquive-se&#39;s customers files" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-36">
-          <mxCell style="html=1;fontSize=11;dashed=0;whitespace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" parent="1" vertex="1">
-            <mxGeometry x="360" y="30" width="200" height="180" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Type="Relationship" c4Description="Authenticates themselves" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;" id="2RP8Z6aRjcvruNIcd7D2-38">
-          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="2RP8Z6aRjcvruNIcd7D2-36" target="2RP8Z6aRjcvruNIcd7D2-8" edge="1">
-            <mxGeometry width="240" relative="1" as="geometry">
-              <mxPoint x="380" y="240" as="sourcePoint" />
-              <mxPoint x="620" y="240" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </object>
         <object placeholders="1" c4Type="Relationship" id="2RP8Z6aRjcvruNIcd7D2-41">
-          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="2RP8Z6aRjcvruNIcd7D2-36" target="2RP8Z6aRjcvruNIcd7D2-4" edge="1">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="2RP8Z6aRjcvruNIcd7D2-8" target="2RP8Z6aRjcvruNIcd7D2-4" edge="1">
             <mxGeometry width="240" relative="1" as="geometry">
-              <mxPoint x="380" y="240" as="sourcePoint" />
+              <mxPoint x="460" y="210" as="sourcePoint" />
               <mxPoint x="620" y="240" as="targetPoint" />
               <Array as="points">
-                <mxPoint x="460" y="240" />
+                <mxPoint x="510" y="240" />
                 <mxPoint x="598" y="240" />
               </Array>
             </mxGeometry>
@@ -204,18 +135,64 @@
             <mxPoint x="1" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="kT61lDSwXDibuRG-Hc-p-3" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="2RP8Z6aRjcvruNIcd7D2-1" target="2RP8Z6aRjcvruNIcd7D2-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Type="Commands Queue" c4Container="Container" c4Technology="Azure Service Bus" c4Description="Commands Queue" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Type%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Container%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="kT61lDSwXDibuRG-Hc-p-4">
+          <mxCell style="shape=cylinder3;size=15;direction=south;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" vertex="1" parent="1">
+            <mxGeometry x="160" y="540" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="kT61lDSwXDibuRG-Hc-p-7" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="2RP8Z6aRjcvruNIcd7D2-4" target="kT61lDSwXDibuRG-Hc-p-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kT61lDSwXDibuRG-Hc-p-12" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="kT61lDSwXDibuRG-Hc-p-8" target="kT61lDSwXDibuRG-Hc-p-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="ArquiveSe Worker" c4Type="Container" c4Technology="Azure App Service" c4Description="Proccess commands" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="kT61lDSwXDibuRG-Hc-p-8">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
+            <mxGeometry x="160" y="710" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="kT61lDSwXDibuRG-Hc-p-9" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="2RP8Z6aRjcvruNIcd7D2-4" target="2RP8Z6aRjcvruNIcd7D2-18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="598" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kT61lDSwXDibuRG-Hc-p-10" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="kT61lDSwXDibuRG-Hc-p-8" target="kT61lDSwXDibuRG-Hc-p-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Type="Persistence Database" c4Container="Database" c4Technology="Azure for SQL" c4Description="Relational Database" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Type%&lt;/font&gt;&lt;div&gt;[%c4Container%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="kT61lDSwXDibuRG-Hc-p-11">
+          <mxCell style="shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" vertex="1" parent="1">
+            <mxGeometry x="540" y="712" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="YvDlM1fb2oxn6pMmLSER" name="Components Diagram">
-    <mxGraphModel dx="1434" dy="758" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="714" dy="807" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="tL5aAeC0OMaukjZASPwM-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=open;endFill=0;" parent="1" source="tL5aAeC0OMaukjZASPwM-4" target="tL5aAeC0OMaukjZASPwM-19" edge="1">
+        <mxCell id="tL5aAeC0OMaukjZASPwM-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=open;endFill=0;dashed=1;" parent="1" source="tL5aAeC0OMaukjZASPwM-4" target="grJt7uv1GvaVLODuGR3A-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yEN7ICg1BVipxkUSv6Oy-1" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;" edge="1" parent="1" source="tL5aAeC0OMaukjZASPwM-4" target="tL5aAeC0OMaukjZASPwM-10">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-4" value="&lt;p style=&quot;margin:0px;margin-top:6px;text-align:center;&quot;&gt;&lt;b&gt;API Gateway&lt;/b&gt;&lt;/p&gt;" style="align=left;overflow=fill;html=1;dropTarget=0;" parent="1" vertex="1">
+        <mxCell id="yEN7ICg1BVipxkUSv6Oy-5" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;" edge="1" parent="1" source="tL5aAeC0OMaukjZASPwM-4" target="grJt7uv1GvaVLODuGR3A-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tL5aAeC0OMaukjZASPwM-4" value="&lt;p style=&quot;margin:0px;margin-top:6px;text-align:center;&quot;&gt;&lt;b&gt;ArquiveSe API&lt;/b&gt;&lt;/p&gt;" style="align=left;overflow=fill;html=1;dropTarget=0;" parent="1" vertex="1">
           <mxGeometry x="130" y="160" width="480" height="40" as="geometry" />
         </mxCell>
         <mxCell id="tL5aAeC0OMaukjZASPwM-5" value="" style="shape=component;jettyWidth=8;jettyHeight=4;" parent="tL5aAeC0OMaukjZASPwM-4" vertex="1">
@@ -258,72 +235,18 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="grJt7uv1GvaVLODuGR3A-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" parent="1" source="tL5aAeC0OMaukjZASPwM-19" target="grJt7uv1GvaVLODuGR3A-1" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-19" value="&lt;p style=&quot;margin: 6px 0px 0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;&lt;b&gt;ArquivoSe.Functions - Serveless APIs&lt;/b&gt;&lt;/p&gt;" style="align=center;overflow=fill;html=1;dropTarget=0;" parent="1" vertex="1">
-          <mxGeometry x="130" y="250" width="480" height="360" as="geometry" />
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-20" value="" style="shape=component;jettyWidth=8;jettyHeight=4;" parent="tL5aAeC0OMaukjZASPwM-19" vertex="1">
-          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
-            <mxPoint x="-24" y="4" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-23" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="1" vertex="1">
-          <mxGeometry x="130" y="280" width="480" height="8" as="geometry" />
-        </mxCell>
         <mxCell id="tL5aAeC0OMaukjZASPwM-26" value="&amp;lt;&amp;lt;storage&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;Azure Blob Storage&lt;/b&gt;" style="html=1;dropTarget=0;" parent="1" vertex="1">
-          <mxGeometry x="380" y="950" width="180" height="90" as="geometry" />
+          <mxGeometry x="110" y="730" width="180" height="90" as="geometry" />
         </mxCell>
         <mxCell id="tL5aAeC0OMaukjZASPwM-27" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="tL5aAeC0OMaukjZASPwM-26" vertex="1">
           <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
             <mxPoint x="-27" y="7" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-31" value="«database»&lt;br&gt;&lt;b&gt;Azure CosmosDB&lt;/b&gt;" style="html=1;dropTarget=0;" parent="1" vertex="1">
-          <mxGeometry x="190" y="950" width="180" height="90" as="geometry" />
+        <mxCell id="tL5aAeC0OMaukjZASPwM-31" value="«reading db»&lt;br&gt;&lt;b&gt;Azure MongoDb&lt;/b&gt;" style="html=1;dropTarget=0;" parent="1" vertex="1">
+          <mxGeometry x="110" y="630" width="180" height="90" as="geometry" />
         </mxCell>
         <mxCell id="tL5aAeC0OMaukjZASPwM-32" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="tL5aAeC0OMaukjZASPwM-31" vertex="1">
-          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
-            <mxPoint x="-27" y="7" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-33" value="«Azure Function»&lt;br&gt;&lt;b&gt;Upload file&amp;nbsp;&lt;/b&gt;" style="html=1;dropTarget=0;" parent="1" vertex="1">
-          <mxGeometry x="150" y="290" width="180" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-34" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="tL5aAeC0OMaukjZASPwM-33" vertex="1">
-          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
-            <mxPoint x="-27" y="7" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-35" value="«Azure Function»&lt;br&gt;&lt;b&gt;Download file by Id&lt;/b&gt;" style="html=1;dropTarget=0;" parent="1" vertex="1">
-          <mxGeometry x="410" y="290" width="180" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-36" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="tL5aAeC0OMaukjZASPwM-35" vertex="1">
-          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
-            <mxPoint x="-27" y="7" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-37" value="«Azure Functions»&lt;br&gt;&lt;b&gt;Share file&lt;/b&gt;" style="html=1;dropTarget=0;" parent="1" vertex="1">
-          <mxGeometry x="150" y="400" width="180" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-38" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="tL5aAeC0OMaukjZASPwM-37" vertex="1">
-          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
-            <mxPoint x="-27" y="7" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-39" value="«Azure Function»&lt;br&gt;&lt;b&gt;Get file data by Id&lt;/b&gt;" style="html=1;dropTarget=0;" parent="1" vertex="1">
-          <mxGeometry x="150" y="510" width="180" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-40" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="tL5aAeC0OMaukjZASPwM-39" vertex="1">
-          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
-            <mxPoint x="-27" y="7" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-41" value="«Azure Function»&lt;br&gt;&lt;b&gt;Search files&lt;/b&gt;" style="html=1;dropTarget=0;" parent="1" vertex="1">
-          <mxGeometry x="410" y="400" width="180" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="tL5aAeC0OMaukjZASPwM-42" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="tL5aAeC0OMaukjZASPwM-41" vertex="1">
           <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
             <mxPoint x="-27" y="7" as="offset" />
           </mxGeometry>
@@ -335,7 +258,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="grJt7uv1GvaVLODuGR3A-1" value="«use cases»&lt;br&gt;&lt;b&gt;ArquiveSe.Application&lt;/b&gt;" style="html=1;dropTarget=0;" parent="1" vertex="1">
-          <mxGeometry x="130" y="670" width="240" height="90" as="geometry" />
+          <mxGeometry x="110" y="350" width="240" height="90" as="geometry" />
         </mxCell>
         <mxCell id="grJt7uv1GvaVLODuGR3A-2" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="grJt7uv1GvaVLODuGR3A-1" vertex="1">
           <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
@@ -343,7 +266,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="grJt7uv1GvaVLODuGR3A-3" value="«core»&lt;br&gt;&lt;b&gt;ArquiveSe.Domain&lt;/b&gt;" style="html=1;dropTarget=0;" parent="1" vertex="1">
-          <mxGeometry x="390" y="670" width="220" height="90" as="geometry" />
+          <mxGeometry x="370" y="350" width="220" height="90" as="geometry" />
         </mxCell>
         <mxCell id="grJt7uv1GvaVLODuGR3A-4" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="grJt7uv1GvaVLODuGR3A-3" vertex="1">
           <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
@@ -357,12 +280,38 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="grJt7uv1GvaVLODuGR3A-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="1" source="grJt7uv1GvaVLODuGR3A-6" target="tL5aAeC0OMaukjZASPwM-26" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="350" y="770" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yEN7ICg1BVipxkUSv6Oy-11" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;" edge="1" parent="1" source="grJt7uv1GvaVLODuGR3A-6" target="yEN7ICg1BVipxkUSv6Oy-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yEN7ICg1BVipxkUSv6Oy-12" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;" edge="1" parent="1" source="grJt7uv1GvaVLODuGR3A-6" target="yEN7ICg1BVipxkUSv6Oy-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="grJt7uv1GvaVLODuGR3A-6" value="«Infrastructure»&lt;br&gt;&lt;b&gt;ArquiveSe.Infra&lt;/b&gt;" style="html=1;dropTarget=0;" parent="1" vertex="1">
-          <mxGeometry x="130" y="820" width="480" height="90" as="geometry" />
+          <mxGeometry x="110" y="500" width="480" height="90" as="geometry" />
         </mxCell>
         <mxCell id="grJt7uv1GvaVLODuGR3A-7" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="grJt7uv1GvaVLODuGR3A-6" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yEN7ICg1BVipxkUSv6Oy-6" value="«persistence db»&lt;br&gt;&lt;b&gt;Azure for SQL&lt;/b&gt;" style="html=1;dropTarget=0;" vertex="1" parent="1">
+          <mxGeometry x="410" y="630" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="yEN7ICg1BVipxkUSv6Oy-7" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" vertex="1" parent="yEN7ICg1BVipxkUSv6Oy-6">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yEN7ICg1BVipxkUSv6Oy-8" value="«queue»&lt;br&gt;&lt;b&gt;Azure Service Bus&lt;/b&gt;" style="html=1;dropTarget=0;" vertex="1" parent="1">
+          <mxGeometry x="410" y="730" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="yEN7ICg1BVipxkUSv6Oy-9" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" vertex="1" parent="yEN7ICg1BVipxkUSv6Oy-8">
           <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
             <mxPoint x="-27" y="7" as="offset" />
           </mxGeometry>
